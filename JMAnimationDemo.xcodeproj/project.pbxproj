@@ -1,0 +1,587 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		88E411E11C969FE3004BB629 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E411E01C969FE3004BB629 /* main.m */; };
+		88E411E41C969FE3004BB629 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E411E31C969FE3004BB629 /* AppDelegate.m */; };
+		88E411E71C969FE4004BB629 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E411E61C969FE4004BB629 /* ViewController.m */; };
+		88E411EA1C969FE4004BB629 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88E411E81C969FE4004BB629 /* Main.storyboard */; };
+		88E411EC1C969FE4004BB629 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88E411EB1C969FE4004BB629 /* Assets.xcassets */; };
+		88E411EF1C969FE4004BB629 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88E411ED1C969FE4004BB629 /* LaunchScreen.storyboard */; };
+		88E411FA1C969FE4004BB629 /* JMAnimationDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E411F91C969FE4004BB629 /* JMAnimationDemoTests.m */; };
+		88E412051C969FE4004BB629 /* JMAnimationDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E412041C969FE4004BB629 /* JMAnimationDemoUITests.m */; };
+		88E412181C96B58B004BB629 /* CircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E412171C96B58B004BB629 /* CircleViewController.m */; };
+		88E4121C1C96B657004BB629 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E4121B1C96B657004BB629 /* CircleView.m */; };
+		88E4121F1C96B673004BB629 /* CircleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E4121E1C96B673004BB629 /* CircleLayer.m */; };
+		88E412221C970185004BB629 /* UIControl+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E412211C970185004BB629 /* UIControl+YYAdd.m */; };
+		88E412251C97E26A004BB629 /* GooeySlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E412241C97E26A004BB629 /* GooeySlideMenuViewController.m */; };
+		88E412291C97E385004BB629 /* GooeySlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E412281C97E385004BB629 /* GooeySlideMenu.m */; };
+		88E4122C1C97E3DB004BB629 /* SlideMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E4122B1C97E3DB004BB629 /* SlideMenuButton.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		88E411F61C969FE4004BB629 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88E411D41C969FE3004BB629 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88E411DB1C969FE3004BB629;
+			remoteInfo = JMAnimationDemo;
+		};
+		88E412011C969FE4004BB629 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88E411D41C969FE3004BB629 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88E411DB1C969FE3004BB629;
+			remoteInfo = JMAnimationDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		88E411DC1C969FE3004BB629 /* JMAnimationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JMAnimationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88E411E01C969FE3004BB629 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		88E411E21C969FE3004BB629 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		88E411E31C969FE3004BB629 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		88E411E51C969FE4004BB629 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		88E411E61C969FE4004BB629 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		88E411E91C969FE4004BB629 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		88E411EB1C969FE4004BB629 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		88E411EE1C969FE4004BB629 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		88E411F01C969FE4004BB629 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88E411F51C969FE4004BB629 /* JMAnimationDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JMAnimationDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88E411F91C969FE4004BB629 /* JMAnimationDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JMAnimationDemoTests.m; sourceTree = "<group>"; };
+		88E411FB1C969FE4004BB629 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88E412001C969FE4004BB629 /* JMAnimationDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JMAnimationDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88E412041C969FE4004BB629 /* JMAnimationDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JMAnimationDemoUITests.m; sourceTree = "<group>"; };
+		88E412061C969FE4004BB629 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88E412161C96B58B004BB629 /* CircleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleViewController.h; sourceTree = "<group>"; };
+		88E412171C96B58B004BB629 /* CircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleViewController.m; sourceTree = "<group>"; };
+		88E4121A1C96B657004BB629 /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
+		88E4121B1C96B657004BB629 /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
+		88E4121D1C96B673004BB629 /* CircleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleLayer.h; sourceTree = "<group>"; };
+		88E4121E1C96B673004BB629 /* CircleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleLayer.m; sourceTree = "<group>"; };
+		88E412201C970185004BB629 /* UIControl+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+YYAdd.h"; sourceTree = "<group>"; };
+		88E412211C970185004BB629 /* UIControl+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+YYAdd.m"; sourceTree = "<group>"; };
+		88E412231C97E26A004BB629 /* GooeySlideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GooeySlideMenuViewController.h; sourceTree = "<group>"; };
+		88E412241C97E26A004BB629 /* GooeySlideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GooeySlideMenuViewController.m; sourceTree = "<group>"; };
+		88E412271C97E385004BB629 /* GooeySlideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GooeySlideMenu.h; sourceTree = "<group>"; };
+		88E412281C97E385004BB629 /* GooeySlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GooeySlideMenu.m; sourceTree = "<group>"; };
+		88E4122A1C97E3DB004BB629 /* SlideMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideMenuButton.h; sourceTree = "<group>"; };
+		88E4122B1C97E3DB004BB629 /* SlideMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideMenuButton.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		88E411D91C969FE3004BB629 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88E411F21C969FE4004BB629 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88E411FD1C969FE4004BB629 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		88E411D31C969FE3004BB629 = {
+			isa = PBXGroup;
+			children = (
+				88E411DE1C969FE3004BB629 /* JMAnimationDemo */,
+				88E411F81C969FE4004BB629 /* JMAnimationDemoTests */,
+				88E412031C969FE4004BB629 /* JMAnimationDemoUITests */,
+				88E411DD1C969FE3004BB629 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		88E411DD1C969FE3004BB629 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88E411DC1C969FE3004BB629 /* JMAnimationDemo.app */,
+				88E411F51C969FE4004BB629 /* JMAnimationDemoTests.xctest */,
+				88E412001C969FE4004BB629 /* JMAnimationDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		88E411DE1C969FE3004BB629 /* JMAnimationDemo */ = {
+			isa = PBXGroup;
+			children = (
+				88E411E21C969FE3004BB629 /* AppDelegate.h */,
+				88E411E31C969FE3004BB629 /* AppDelegate.m */,
+				88E411E51C969FE4004BB629 /* ViewController.h */,
+				88E411E61C969FE4004BB629 /* ViewController.m */,
+				88E412201C970185004BB629 /* UIControl+YYAdd.h */,
+				88E412211C970185004BB629 /* UIControl+YYAdd.m */,
+				88E412121C96B557004BB629 /* Animation */,
+				88E411E81C969FE4004BB629 /* Main.storyboard */,
+				88E411EB1C969FE4004BB629 /* Assets.xcassets */,
+				88E411ED1C969FE4004BB629 /* LaunchScreen.storyboard */,
+				88E411F01C969FE4004BB629 /* Info.plist */,
+				88E411DF1C969FE3004BB629 /* Supporting Files */,
+			);
+			path = JMAnimationDemo;
+			sourceTree = "<group>";
+		};
+		88E411DF1C969FE3004BB629 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88E411E01C969FE3004BB629 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88E411F81C969FE4004BB629 /* JMAnimationDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				88E411F91C969FE4004BB629 /* JMAnimationDemoTests.m */,
+				88E411FB1C969FE4004BB629 /* Info.plist */,
+			);
+			path = JMAnimationDemoTests;
+			sourceTree = "<group>";
+		};
+		88E412031C969FE4004BB629 /* JMAnimationDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				88E412041C969FE4004BB629 /* JMAnimationDemoUITests.m */,
+				88E412061C969FE4004BB629 /* Info.plist */,
+			);
+			path = JMAnimationDemoUITests;
+			sourceTree = "<group>";
+		};
+		88E412121C96B557004BB629 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				88E412161C96B58B004BB629 /* CircleViewController.h */,
+				88E412171C96B58B004BB629 /* CircleViewController.m */,
+				88E412191C96B638004BB629 /* CircleView */,
+				88E412231C97E26A004BB629 /* GooeySlideMenuViewController.h */,
+				88E412241C97E26A004BB629 /* GooeySlideMenuViewController.m */,
+				88E412261C97E276004BB629 /* GooeySlideMenu */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		88E412191C96B638004BB629 /* CircleView */ = {
+			isa = PBXGroup;
+			children = (
+				88E4121A1C96B657004BB629 /* CircleView.h */,
+				88E4121B1C96B657004BB629 /* CircleView.m */,
+				88E4121D1C96B673004BB629 /* CircleLayer.h */,
+				88E4121E1C96B673004BB629 /* CircleLayer.m */,
+			);
+			name = CircleView;
+			sourceTree = "<group>";
+		};
+		88E412261C97E276004BB629 /* GooeySlideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				88E412271C97E385004BB629 /* GooeySlideMenu.h */,
+				88E412281C97E385004BB629 /* GooeySlideMenu.m */,
+				88E4122A1C97E3DB004BB629 /* SlideMenuButton.h */,
+				88E4122B1C97E3DB004BB629 /* SlideMenuButton.m */,
+			);
+			name = GooeySlideMenu;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		88E411DB1C969FE3004BB629 /* JMAnimationDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88E412091C969FE4004BB629 /* Build configuration list for PBXNativeTarget "JMAnimationDemo" */;
+			buildPhases = (
+				88E411D81C969FE3004BB629 /* Sources */,
+				88E411D91C969FE3004BB629 /* Frameworks */,
+				88E411DA1C969FE3004BB629 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JMAnimationDemo;
+			productName = JMAnimationDemo;
+			productReference = 88E411DC1C969FE3004BB629 /* JMAnimationDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		88E411F41C969FE4004BB629 /* JMAnimationDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88E4120C1C969FE4004BB629 /* Build configuration list for PBXNativeTarget "JMAnimationDemoTests" */;
+			buildPhases = (
+				88E411F11C969FE4004BB629 /* Sources */,
+				88E411F21C969FE4004BB629 /* Frameworks */,
+				88E411F31C969FE4004BB629 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88E411F71C969FE4004BB629 /* PBXTargetDependency */,
+			);
+			name = JMAnimationDemoTests;
+			productName = JMAnimationDemoTests;
+			productReference = 88E411F51C969FE4004BB629 /* JMAnimationDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		88E411FF1C969FE4004BB629 /* JMAnimationDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88E4120F1C969FE4004BB629 /* Build configuration list for PBXNativeTarget "JMAnimationDemoUITests" */;
+			buildPhases = (
+				88E411FC1C969FE4004BB629 /* Sources */,
+				88E411FD1C969FE4004BB629 /* Frameworks */,
+				88E411FE1C969FE4004BB629 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88E412021C969FE4004BB629 /* PBXTargetDependency */,
+			);
+			name = JMAnimationDemoUITests;
+			productName = JMAnimationDemoUITests;
+			productReference = 88E412001C969FE4004BB629 /* JMAnimationDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		88E411D41C969FE3004BB629 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = JM;
+				TargetAttributes = {
+					88E411DB1C969FE3004BB629 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					88E411F41C969FE4004BB629 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 88E411DB1C969FE3004BB629;
+					};
+					88E411FF1C969FE4004BB629 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 88E411DB1C969FE3004BB629;
+					};
+				};
+			};
+			buildConfigurationList = 88E411D71C969FE3004BB629 /* Build configuration list for PBXProject "JMAnimationDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 88E411D31C969FE3004BB629;
+			productRefGroup = 88E411DD1C969FE3004BB629 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				88E411DB1C969FE3004BB629 /* JMAnimationDemo */,
+				88E411F41C969FE4004BB629 /* JMAnimationDemoTests */,
+				88E411FF1C969FE4004BB629 /* JMAnimationDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		88E411DA1C969FE3004BB629 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88E411EF1C969FE4004BB629 /* LaunchScreen.storyboard in Resources */,
+				88E411EC1C969FE4004BB629 /* Assets.xcassets in Resources */,
+				88E411EA1C969FE4004BB629 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88E411F31C969FE4004BB629 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88E411FE1C969FE4004BB629 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		88E411D81C969FE3004BB629 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88E4122C1C97E3DB004BB629 /* SlideMenuButton.m in Sources */,
+				88E411E71C969FE4004BB629 /* ViewController.m in Sources */,
+				88E412251C97E26A004BB629 /* GooeySlideMenuViewController.m in Sources */,
+				88E4121C1C96B657004BB629 /* CircleView.m in Sources */,
+				88E411E41C969FE3004BB629 /* AppDelegate.m in Sources */,
+				88E412221C970185004BB629 /* UIControl+YYAdd.m in Sources */,
+				88E4121F1C96B673004BB629 /* CircleLayer.m in Sources */,
+				88E412291C97E385004BB629 /* GooeySlideMenu.m in Sources */,
+				88E412181C96B58B004BB629 /* CircleViewController.m in Sources */,
+				88E411E11C969FE3004BB629 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88E411F11C969FE4004BB629 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88E411FA1C969FE4004BB629 /* JMAnimationDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88E411FC1C969FE4004BB629 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88E412051C969FE4004BB629 /* JMAnimationDemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		88E411F71C969FE4004BB629 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88E411DB1C969FE3004BB629 /* JMAnimationDemo */;
+			targetProxy = 88E411F61C969FE4004BB629 /* PBXContainerItemProxy */;
+		};
+		88E412021C969FE4004BB629 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88E411DB1C969FE3004BB629 /* JMAnimationDemo */;
+			targetProxy = 88E412011C969FE4004BB629 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		88E411E81C969FE4004BB629 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88E411E91C969FE4004BB629 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		88E411ED1C969FE4004BB629 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88E411EE1C969FE4004BB629 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		88E412071C969FE4004BB629 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		88E412081C969FE4004BB629 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		88E4120A1C969FE4004BB629 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = JMAnimationDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocoa.JMAnimationDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		88E4120B1C969FE4004BB629 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = JMAnimationDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocoa.JMAnimationDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		88E4120D1C969FE4004BB629 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = JMAnimationDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocoa.JMAnimationDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JMAnimationDemo.app/JMAnimationDemo";
+			};
+			name = Debug;
+		};
+		88E4120E1C969FE4004BB629 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = JMAnimationDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocoa.JMAnimationDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JMAnimationDemo.app/JMAnimationDemo";
+			};
+			name = Release;
+		};
+		88E412101C969FE4004BB629 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = JMAnimationDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocoa.JMAnimationDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = JMAnimationDemo;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		88E412111C969FE4004BB629 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = JMAnimationDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocoa.JMAnimationDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = JMAnimationDemo;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		88E411D71C969FE3004BB629 /* Build configuration list for PBXProject "JMAnimationDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88E412071C969FE4004BB629 /* Debug */,
+				88E412081C969FE4004BB629 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88E412091C969FE4004BB629 /* Build configuration list for PBXNativeTarget "JMAnimationDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88E4120A1C969FE4004BB629 /* Debug */,
+				88E4120B1C969FE4004BB629 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		88E4120C1C969FE4004BB629 /* Build configuration list for PBXNativeTarget "JMAnimationDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88E4120D1C969FE4004BB629 /* Debug */,
+				88E4120E1C969FE4004BB629 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		88E4120F1C969FE4004BB629 /* Build configuration list for PBXNativeTarget "JMAnimationDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88E412101C969FE4004BB629 /* Debug */,
+				88E412111C969FE4004BB629 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 88E411D41C969FE3004BB629 /* Project object */;
+}
