@@ -11,4 +11,4 @@ AnimatedCircle
 ![](https://github.com/raozhizhen/JMAnimationDemo/blob/master/GifFiles/AnimatedCircle.gif?raw=true)
 
 GooeySlideMenu
-![](https://github.com/raozhizhen/JMAnimationDemo/blob/master/GifFiles/GooeySlideMenu?raw=true)
+![](https://github.com/raozhizhen/JMAnimationDemo/blob/master/GifFiles/GooeySlideMenu.gif?raw=true)
