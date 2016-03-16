@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		888DDC6B1C9902320002176E /* RedDotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 888DDC6A1C9902320002176E /* RedDotViewController.m */; };
+		888DDC6F1C9903900002176E /* RedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888DDC6E1C9903900002176E /* RedDotView.m */; };
 		88E411E11C969FE3004BB629 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E411E01C969FE3004BB629 /* main.m */; };
 		88E411E41C969FE3004BB629 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E411E31C969FE3004BB629 /* AppDelegate.m */; };
 		88E411E71C969FE4004BB629 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E411E61C969FE4004BB629 /* ViewController.m */; };
@@ -42,6 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		888DDC691C9902320002176E /* RedDotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedDotViewController.h; sourceTree = "<group>"; };
+		888DDC6A1C9902320002176E /* RedDotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedDotViewController.m; sourceTree = "<group>"; };
+		888DDC6D1C9903900002176E /* RedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedDotView.h; sourceTree = "<group>"; };
+		888DDC6E1C9903900002176E /* RedDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedDotView.m; sourceTree = "<group>"; };
 		88E411DC1C969FE3004BB629 /* JMAnimationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JMAnimationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88E411E01C969FE3004BB629 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		88E411E21C969FE3004BB629 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -99,6 +105,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		888DDC6C1C9902400002176E /* RedDot */ = {
+			isa = PBXGroup;
+			children = (
+				888DDC6D1C9903900002176E /* RedDotView.h */,
+				888DDC6E1C9903900002176E /* RedDotView.m */,
+			);
+			name = RedDot;
+			sourceTree = "<group>";
+		};
 		88E411D31C969FE3004BB629 = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +188,9 @@
 				88E412231C97E26A004BB629 /* GooeySlideMenuViewController.h */,
 				88E412241C97E26A004BB629 /* GooeySlideMenuViewController.m */,
 				88E412261C97E276004BB629 /* GooeySlideMenu */,
+				888DDC691C9902320002176E /* RedDotViewController.h */,
+				888DDC6A1C9902320002176E /* RedDotViewController.m */,
+				888DDC6C1C9902400002176E /* RedDot */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -336,6 +354,8 @@
 				88E411E41C969FE3004BB629 /* AppDelegate.m in Sources */,
 				88E412221C970185004BB629 /* UIControl+YYAdd.m in Sources */,
 				88E4121F1C96B673004BB629 /* CircleLayer.m in Sources */,
+				888DDC6B1C9902320002176E /* RedDotViewController.m in Sources */,
+				888DDC6F1C9903900002176E /* RedDotView.m in Sources */,
 				88E412291C97E385004BB629 /* GooeySlideMenu.m in Sources */,
 				88E412181C96B58B004BB629 /* CircleViewController.m in Sources */,
 				88E411E11C969FE3004BB629 /* main.m in Sources */,
@@ -564,6 +584,7 @@
 				88E4120B1C969FE4004BB629 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		88E4120C1C969FE4004BB629 /* Build configuration list for PBXNativeTarget "JMAnimationDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -572,6 +593,7 @@
 				88E4120E1C969FE4004BB629 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		88E4120F1C969FE4004BB629 /* Build configuration list for PBXNativeTarget "JMAnimationDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -580,6 +602,7 @@
 				88E412111C969FE4004BB629 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

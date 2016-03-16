@@ -34,6 +34,7 @@
     _classNames = @[].mutableCopy;
     [self addCell:@"Animated circle" class:@"CircleViewController"];
     [self addCell:@"Gooey Slide Menu" class:@"GooeySlideMenuViewController"];
+    [self addCell:@"Red Dot" class:@"RedDotViewController"];
 }
 
 - (void)addCell:(NSString *)title class:(NSString *)className {
