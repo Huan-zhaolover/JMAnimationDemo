@@ -8,65 +8,69 @@
 
 #import "RedDotView.h"
 
+typedef void (^DismissBlock)(UIView *);
+
 @implementation RedDotView {
     UIBezierPath *_cutePath;
     UIColor *_fillColorForCute;
     UIDynamicAnimator *_animator;
     UISnapBehavior *_snap;
-    UIView *_containerView;
+//    UIView *_containerView;
     CGFloat _viscosity;
     UIColor *_bubbleColor;
     CGFloat _bubbleWidth;
     UIView *_frontView;
     UILabel *_bubbleLabel;
     
+//    UIView *_animationView;
+    
     UIView *_backView;
     CGFloat _R1, _R2, _X1, _X2, _Y1, _Y2;
     CGFloat _centerDistance;
+    CGFloat _maxDistance;
     CGFloat _cosDigree;
     CGFloat _sinDigree;
     
-    CGPoint _pointA, _pointB, _pointC, _pointD, _pointO, _pointP;
-    CGPoint _initialPoint;
+    CGPoint _pointA, _pointB, _pointC, _pointD, _pointO, _pointP, _pointTemp, _pointTemp2;
+    CGPoint _deviationPoint;
     CGRect _oldBackViewFrame;
     CGPoint _oldBackViewCenter;
     CAShapeLayer *_shapeLayer;
+    
+    DismissBlock _dismissBlock;
+//    CGPoint _touchesStartPoint;
 }
 
-- (instancetype)initWithPoint:(CGPoint)point bubbleWidth:(CGFloat)bubbleWidth viscosity:(CGFloat)viscosity bubbleColor:(UIColor *)bubbleColor superView:(UIView *)containerView {
-    self = [super initWithFrame:CGRectMake(point.x, point.y, bubbleWidth, bubbleWidth)];
+- (void)attach:(UIView *)item {
+    UIPanGestureRecognizer *gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleDragGesture:)];
+    [item addGestureRecognizer:gesture];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame bubbleWidth:(CGFloat)bubbleWidth viscosity:(CGFloat)viscosity bubbleColor:(UIColor *)bubbleColor superView:(UIView *)containerView {
+    self = [super initWithFrame:frame];
     if (self) {
-        _initialPoint = point;
-        _containerView = containerView;
+//        _containerView = containerView;
         _bubbleWidth = bubbleWidth;
         _viscosity = viscosity;
         _bubbleColor = bubbleColor;
-        [_containerView addSubview:self];
-        [self setUp];
+        _maxDistance = 100;
+        self.userInteractionEnabled = NO;
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
 
 - (void)setUp {
     _shapeLayer = [CAShapeLayer layer];
-    self.backgroundColor = [UIColor clearColor];
-    _frontView = [[UIView alloc] initWithFrame:CGRectMake(_initialPoint.x, _initialPoint.y, _bubbleWidth, _bubbleWidth)];
     _R2 = _bubbleWidth/2;
-    _frontView.layer.cornerRadius = _R2;
-    _frontView.backgroundColor = _bubbleColor;
     
-    _backView = [[UIView alloc] initWithFrame:_frontView.frame];
+    _backView = [[UIView alloc] initWithFrame:CGRectMake(_frontView.center.x - _R2, _frontView.center.y - _R2, _bubbleWidth, _bubbleWidth)];
     _R1 = _bubbleWidth/2;
     _backView.layer.cornerRadius = _R1;
     _backView.backgroundColor = _bubbleColor;
     
-    _bubbleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _frontView.bounds.size.width, _frontView.bounds.size.height)];
-    _bubbleLabel.textColor = [UIColor whiteColor];
-    _bubbleLabel.textAlignment = NSTextAlignmentCenter;
-    [_frontView addSubview:_bubbleLabel];
-    
-    [_containerView addSubview:_backView];
-    [_containerView addSubview:_frontView];
+    [self addSubview:_backView];
+    [self addSubview:_frontView];
     
     _X1 = _backView.center.x;
     _Y1 = _backView.center.y;
@@ -82,31 +86,55 @@
     
     _oldBackViewFrame = _backView.frame;
     _oldBackViewCenter = _backView.center;
-
-    UIPanGestureRecognizer *gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleDragGesture:)];
-    [_frontView addGestureRecognizer:gesture];
 }
 
 - (void)handleDragGesture:(UIPanGestureRecognizer *)gesture {
-    CGPoint dragPoint = [gesture locationInView:_containerView];
+    CGPoint dragPoint = [gesture locationInView:self];
+    UIView *touchView = gesture.view;
     if (gesture.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"我被抓住了");
+        CGPoint dragPountInView = [gesture locationInView:gesture.view];
+        _deviationPoint = CGPointMake(dragPountInView.x - gesture.view.frame.size.width/2, dragPountInView.y - gesture.view.frame.size.height/2);
+        [[[UIApplication sharedApplication].delegate window] addSubview:self];
+        NSData * tempArchive = [NSKeyedArchiver archivedDataWithRootObject:touchView];
+        _frontView = [NSKeyedUnarchiver unarchiveObjectWithData:tempArchive];
+        _bubbleWidth = MIN(_frontView.frame.size.width, _frontView.frame.size.height);
+        _centerDistance = 0;
+        CGPoint animationViewOrigin = [touchView convertPoint:CGPointMake(0, 0) toView:self];
+        _frontView.frame = CGRectMake(animationViewOrigin.x, animationViewOrigin.y, touchView.frame.size.width, touchView.frame.size.height);
+        [self setUp];
         _fillColorForCute = _bubbleColor;
+        touchView.hidden = YES;
         _backView.hidden = NO;
+        self.userInteractionEnabled = YES;
     } else if (gesture.state == UIGestureRecognizerStateChanged) {
-        _frontView.center = dragPoint;
-        if (_R1 <= 6) {
+        _frontView.center =  CGPointMake(dragPoint.x - _deviationPoint.x, dragPoint.y - _deviationPoint.y);
+        if (_centerDistance > _maxDistance) {
             _fillColorForCute = [UIColor clearColor];
             _backView.hidden = YES;
             [_shapeLayer removeFromSuperlayer];
         }
         [self drawRect];
     } else if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled || gesture.state == UIGestureRecognizerStateFailed) {
-        _backView.hidden = YES;
         _fillColorForCute = [UIColor clearColor];
+        _backView.hidden = YES;
         [_shapeLayer removeFromSuperlayer];
-        [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.4 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            _frontView.center = _oldBackViewCenter;
-        } completion:NULL];
+        if (_centerDistance > _maxDistance) {
+            [_frontView removeFromSuperview];
+            [self explosion];
+            _frontView = touchView;
+        } else {
+            [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.2 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                _frontView.center = _oldBackViewCenter;
+            } completion:^(BOOL finished) {
+                if (finished) {
+                    touchView.hidden = NO;
+                    self.userInteractionEnabled = NO;
+                    [_frontView removeFromSuperview];
+                    [self removeFromSuperview];
+                }
+            }];
+        }
     }
 }
 
@@ -124,14 +152,16 @@
         _cosDigree = (_Y2 - _Y1)/_centerDistance;
         _sinDigree = (_X2 - _X1)/_centerDistance;
     }
-    
-    _R1 = _oldBackViewFrame.size.width/2 - _centerDistance/_viscosity;
+    CGFloat percentage = _centerDistance/_maxDistance;
+    _R1 = (2 - percentage)*_oldBackViewFrame.size.width/4;
     _pointA = CGPointMake(_X1 - _R1*_cosDigree, _Y1 + _R1*_sinDigree);
     _pointB = CGPointMake(_X1 + _R1*_cosDigree, _Y1 - _R1*_sinDigree);
     _pointC = CGPointMake(_X2 + _R2*_cosDigree, _Y2 - _R2*_sinDigree);
     _pointD = CGPointMake(_X2 - _R2*_cosDigree, _Y2 + _R2*_sinDigree);
-    _pointO = CGPointMake(_pointA.x + _centerDistance/2*_sinDigree, _pointA.y + _centerDistance/2*_cosDigree);
-    _pointP = CGPointMake(_pointB.x + _centerDistance/2*_sinDigree, _pointB.y + _centerDistance/2*_cosDigree);
+    _pointTemp = CGPointMake(_pointD.x + percentage*(_pointC.x - _pointD.x), _pointD.y + percentage*(_pointC.y - _pointD.y));//关键点
+    _pointTemp2 = CGPointMake(_pointD.x + (1 - percentage)*(_pointC.x - _pointD.x), _pointD.y + (1 - percentage)*(_pointC.y - _pointD.y));
+    _pointO = CGPointMake(_pointA.x + (_pointTemp.x - _pointA.x)/2, _pointA.y + (_pointTemp.y - _pointA.y)/2);
+    _pointP = CGPointMake(_pointB.x + (_pointTemp2.x - _pointB.x)/2, _pointB.y + (_pointTemp2.y - _pointB.y)/2);
     
     _backView.center = _oldBackViewCenter;
     _backView.bounds = CGRectMake(0, 0, _R1*2, _R1*2);
@@ -147,8 +177,35 @@
     if (_backView.hidden == NO) {
         _shapeLayer.path = [_cutePath CGPath];
         _shapeLayer.fillColor = [_fillColorForCute CGColor];
-        [_containerView.layer insertSublayer:_shapeLayer below:_frontView.layer];
+        [self.layer insertSublayer:_shapeLayer below:_frontView.layer];
     }
+}
+
+//爆炸效果
+- (void)explosion {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (NSInteger i = 1; i < 6; i++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"red_dot_image_%ld", i]];
+        [array addObject:image];
+    }
+    UIImageView *imageView = [[UIImageView alloc] init];
+    imageView.frame = CGRectMake(0, 0, 34, 34);
+    imageView.center = _frontView.center;
+    imageView.animationImages = array;
+    [imageView setAnimationDuration:0.25];
+    [imageView setAnimationRepeatCount:1];
+    [imageView startAnimating];
+    [self addSubview:imageView];
+    [self performSelector:@selector(explosionComplete) withObject:nil afterDelay:0.25 inModes:@[NSDefaultRunLoopMode]];
+}
+
+- (void)explosionComplete {
+    _frontView.hidden = NO;
+    [self removeFromSuperview];
+}
+
+- (void)dealloc {
+    NSLog(@"dealloc");
 }
 
 - (void)setBubbleText:(NSString *)bubbleText {

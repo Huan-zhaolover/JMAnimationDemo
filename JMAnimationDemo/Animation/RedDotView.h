@@ -12,8 +12,11 @@
 
 @property (nonatomic, copy) NSString *bubbleText;
 
-- (instancetype)initWithPoint:(CGPoint)point bubbleWidth:(CGFloat)bubbleWidth viscosity:(CGFloat)viscosity bubbleColor:(UIColor *)bubbleColor superView:(UIView *)containerView;
+- (instancetype)initWithFrame:(CGRect)frame bubbleWidth:(CGFloat)bubbleWidth viscosity:(CGFloat)viscosity bubbleColor:(UIColor *)bubbleColor superView:(UIView *)containerView;
 
-- (void)setUp;
+//- (instancetype)initWith
+
+
+- (void)attach:(UIView *)item;
 
 @end
