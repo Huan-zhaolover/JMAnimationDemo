@@ -14,8 +14,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame bubbleWidth:(CGFloat)bubbleWidth viscosity:(CGFloat)viscosity bubbleColor:(UIColor *)bubbleColor superView:(UIView *)containerView;
 
-//- (instancetype)initWith
-
+- (instancetype)initWithMaxDistance:(CGFloat)maxDistance bubbleColor:(UIColor *)bubbleColor;
 
 - (void)attach:(UIView *)item;
 

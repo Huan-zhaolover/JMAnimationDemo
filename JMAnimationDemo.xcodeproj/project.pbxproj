@@ -15,6 +15,7 @@
 		88DF3F511C9A5AEE005CE224 /* red_dot_image_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DF3F4C1C9A5AEE005CE224 /* red_dot_image_4.png */; };
 		88DF3F521C9A5AEE005CE224 /* red_dot_image_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DF3F4D1C9A5AEE005CE224 /* red_dot_image_5.png */; };
 		88DF3F541C9A9C2E005CE224 /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88DF3F531C9A9C2E005CE224 /* avatar.jpg */; };
+		88DF3F571C9AA040005CE224 /* RedDotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DF3F561C9AA040005CE224 /* RedDotCell.m */; };
 		88E411E11C969FE3004BB629 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E411E01C969FE3004BB629 /* main.m */; };
 		88E411E41C969FE3004BB629 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E411E31C969FE3004BB629 /* AppDelegate.m */; };
 		88E411E71C969FE4004BB629 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E411E61C969FE4004BB629 /* ViewController.m */; };
@@ -60,6 +61,8 @@
 		88DF3F4C1C9A5AEE005CE224 /* red_dot_image_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_dot_image_4.png; sourceTree = "<group>"; };
 		88DF3F4D1C9A5AEE005CE224 /* red_dot_image_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_dot_image_5.png; sourceTree = "<group>"; };
 		88DF3F531C9A9C2E005CE224 /* avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = avatar.jpg; sourceTree = "<group>"; };
+		88DF3F551C9AA040005CE224 /* RedDotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedDotCell.h; sourceTree = "<group>"; };
+		88DF3F561C9AA040005CE224 /* RedDotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedDotCell.m; sourceTree = "<group>"; };
 		88E411DC1C969FE3004BB629 /* JMAnimationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JMAnimationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88E411E01C969FE3004BB629 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		88E411E21C969FE3004BB629 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -216,6 +219,8 @@
 				88E412261C97E276004BB629 /* GooeySlideMenu */,
 				888DDC691C9902320002176E /* RedDotViewController.h */,
 				888DDC6A1C9902320002176E /* RedDotViewController.m */,
+				88DF3F551C9AA040005CE224 /* RedDotCell.h */,
+				88DF3F561C9AA040005CE224 /* RedDotCell.m */,
 				888DDC6C1C9902400002176E /* RedDot */,
 			);
 			path = Animation;
@@ -391,6 +396,7 @@
 				88E412291C97E385004BB629 /* GooeySlideMenu.m in Sources */,
 				88E412181C96B58B004BB629 /* CircleViewController.m in Sources */,
 				88E411E11C969FE3004BB629 /* main.m in Sources */,
+				88DF3F571C9AA040005CE224 /* RedDotCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
