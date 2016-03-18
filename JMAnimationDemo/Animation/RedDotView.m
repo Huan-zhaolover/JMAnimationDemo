@@ -8,18 +8,18 @@
 
 #import "RedDotView.h"
 
-typedef void (^DismissBlock)(UIView *);
-
 @implementation RedDotView {
+    NSMutableDictionary *_separateBlockDictionary;//view消失时触发的block
+    UIPanGestureRecognizer *_gesture;//手势。
     UIBezierPath *_cutePath;
     UIColor *_fillColorForCute;
     UIDynamicAnimator *_animator;
     UISnapBehavior *_snap;
-//    UIView *_containerView;
+    UIView *_touchView;
 //    CGFloat _viscosity;
     UIColor *_bubbleColor;
     CGFloat _bubbleWidth;
-    UIView *_prototypeView;
+    UIImageView *_prototypeView;
     UIView *_frontView;
     UILabel *_bubbleLabel;
     
@@ -38,25 +38,24 @@ typedef void (^DismissBlock)(UIView *);
     CGPoint _oldBackViewCenter;
     CAShapeLayer *_shapeLayer;
     
-    DismissBlock _dismissBlock;
 //    CGPoint _touchesStartPoint;
 }
 
-- (void)attach:(UIView *)item {
-    UIPanGestureRecognizer *gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleDragGesture:)];
-    item.userInteractionEnabled = YES;
-    [item addGestureRecognizer:gesture];
-}
-
-- (instancetype)initWithFrame:(CGRect)frame bubbleWidth:(CGFloat)bubbleWidth viscosity:(CGFloat)viscosity bubbleColor:(UIColor *)bubbleColor superView:(UIView *)containerView {
-    self = [super initWithFrame:frame];
-    if (self) {
-        _bubbleColor = bubbleColor;
-        _maxDistance = 100;
-        self.userInteractionEnabled = NO;
-        self.backgroundColor = [UIColor clearColor];
+- (void)attach:(UIView *)item withSeparateBlock:(SeparateBlock)separateBlock {
+    NSValue *viewValue = [NSValue valueWithNonretainedObject:item];
+    if (!_separateBlockDictionary[viewValue]) {
+        UIPanGestureRecognizer *gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleDragGesture:)];
+        item.userInteractionEnabled = YES;
+        [item addGestureRecognizer:gesture];
     }
-    return self;
+    if (separateBlock) {
+        [_separateBlockDictionary setObject:separateBlock forKey:[NSValue valueWithNonretainedObject:item]];
+    } else {
+        SeparateBlock block = ^BOOL(UIView *view) {
+            return NO;
+        };
+        [_separateBlockDictionary setObject:block forKey:[NSValue valueWithNonretainedObject:item]];
+    }
 }
 
 - (instancetype)initWithMaxDistance:(CGFloat)maxDistance bubbleColor:(UIColor *)bubbleColor {
@@ -64,6 +63,8 @@ typedef void (^DismissBlock)(UIView *);
     if (self) {
         _bubbleColor = bubbleColor;
         _maxDistance = maxDistance;
+        _prototypeView = [[UIImageView alloc] init];
+        _separateBlockDictionary = [[NSMutableDictionary alloc] init];
         self.userInteractionEnabled = NO;
         self.backgroundColor = [UIColor clearColor];
     }
@@ -85,7 +86,6 @@ typedef void (^DismissBlock)(UIView *);
     [self addSubview:_backView];
     [self addSubview:_frontView];
     [self addSubview:_prototypeView];
-//    [self insertSubview:_frontView belowSubview:_prototypeView];
     _X1 = _backView.center.x;
     _Y1 = _backView.center.y;
     _X2 = _prototypeView.center.x;
@@ -104,32 +104,19 @@ typedef void (^DismissBlock)(UIView *);
 
 - (void)handleDragGesture:(UIPanGestureRecognizer *)gesture {
     CGPoint dragPoint = [gesture locationInView:self];
-    UIView *touchView = gesture.view;
     if (gesture.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"我被抓住了");
+        _touchView = gesture.view;
         CGPoint dragPountInView = [gesture locationInView:gesture.view];
         _deviationPoint = CGPointMake(dragPountInView.x - gesture.view.frame.size.width/2, dragPountInView.y - gesture.view.frame.size.height/2);
         [[[UIApplication sharedApplication].delegate window] addSubview:self];
-        _prototypeView = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:touchView]];
-        if ([_prototypeView isKindOfClass:[UIImageView class]]) {
-            ((UIImageView *)_prototypeView).image = ((UIImageView *)touchView).image;
-        } else if ([_prototypeView isKindOfClass:[UIButton class]]) {
-            UIImage *image = [((UIButton *)touchView) backgroundImageForState:UIControlStateNormal];
-            [((UIButton *)_prototypeView) setBackgroundImage:image forState:UIControlStateNormal];
-        }
-        _prototypeView.layer.backgroundColor = touchView.layer.backgroundColor;
-        _prototypeView.layer.cornerRadius = touchView.layer.cornerRadius;
-        _prototypeView.layer.borderColor = touchView.layer.borderColor;
-        _prototypeView.layer.borderWidth = touchView.layer.borderWidth;
-        _prototypeView.layer.masksToBounds = touchView.layer.masksToBounds;
-        _prototypeView.layer.mask = touchView.layer.mask;
-        _bubbleWidth = MIN(_prototypeView.frame.size.width, _prototypeView.frame.size.height) - 1;
+        _prototypeView.image = [self getImageFromView:_touchView];
+        _bubbleWidth = MIN(_touchView.frame.size.width, _touchView.frame.size.height) - 1;
         _centerDistance = 0;
-        CGPoint animationViewOrigin = [touchView convertPoint:CGPointMake(0, 0) toView:self];
-        _prototypeView.frame = CGRectMake(animationViewOrigin.x, animationViewOrigin.y, touchView.frame.size.width, touchView.frame.size.height);
+        CGPoint animationViewOrigin = [_touchView convertPoint:CGPointMake(0, 0) toView:self];
+        _prototypeView.frame = CGRectMake(animationViewOrigin.x, animationViewOrigin.y, _touchView.frame.size.width, _touchView.frame.size.height);
         [self setUp];
         _fillColorForCute = _bubbleColor;
-        touchView.hidden = YES;
+        _touchView.hidden = YES;
         _backView.hidden = NO;
         _frontView.hidden = NO;
         self.userInteractionEnabled = YES;
@@ -149,20 +136,18 @@ typedef void (^DismissBlock)(UIView *);
         _frontView.hidden = YES;
         [_shapeLayer removeFromSuperlayer];
         if (_centerDistance > _maxDistance) {
-            [_prototypeView removeFromSuperview];
-            [self explosion];
-            _prototypeView = touchView;
-        } else {
-            [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.2 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                _prototypeView.center = _oldBackViewCenter;
-            } completion:^(BOOL finished) {
-                if (finished) {
-                    touchView.hidden = NO;
-                    self.userInteractionEnabled = NO;
+            SeparateBlock block = _separateBlockDictionary[[NSValue valueWithNonretainedObject:_touchView]];
+            if (block) {
+                BOOL animationEnable = block(_touchView);
+                if (animationEnable) {
                     [_prototypeView removeFromSuperview];
-                    [self removeFromSuperview];
+                    [self explosion:_prototypeView.center radius:_bubbleWidth];
+                } else {
+                    [self springBack:_prototypeView point:_oldBackViewCenter];
                 }
-            }];
+            }
+        } else {
+            [self springBack:_prototypeView point:_oldBackViewCenter];
         }
     }
 }
@@ -211,15 +196,15 @@ typedef void (^DismissBlock)(UIView *);
 }
 
 //爆炸效果
-- (void)explosion {
+- (void)explosion:(CGPoint)explosionPoint radius:(CGFloat)radius {
     NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (NSInteger i = 1; i < 6; i++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"red_dot_image_%ld", i]];
+    for (int i = 1; i < 6; i++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"red_dot_image_%d", i]];
         [array addObject:image];
     }
     UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.frame = CGRectMake(0, 0, _bubbleWidth*2, _bubbleWidth*2);
-    imageView.center = _prototypeView.center;
+    imageView.frame = CGRectMake(0, 0, radius*2, radius*2);
+    imageView.center = explosionPoint;
     imageView.animationImages = array;
     [imageView setAnimationDuration:0.25];
     [imageView setAnimationRepeatCount:1];
@@ -228,35 +213,42 @@ typedef void (^DismissBlock)(UIView *);
     [self performSelector:@selector(explosionComplete) withObject:nil afterDelay:0.25 inModes:@[NSDefaultRunLoopMode]];
 }
 
+//爆炸动画结束
 - (void)explosionComplete {
-    _prototypeView.hidden = NO;
+    _touchView.hidden = YES;
     [self removeFromSuperview];
+}
+
+//回弹效果
+- (void)springBack:(UIView *)view point:(CGPoint)point {
+    [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.2 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        view.center = point;
+    } completion:^(BOOL finished) {
+        if (finished) {
+            _touchView.hidden = NO;
+            self.userInteractionEnabled = NO;
+            [view removeFromSuperview];
+            [self removeFromSuperview];
+        }
+    }];
+}
+
+- (UIView *)deepCopyView:(UIView *)view {
+    UIImageView *copyView = [[UIImageView alloc] initWithFrame:view.frame];
+    copyView.image = [self getImageFromView:view];
+    return copyView;
+}
+
+- (UIImage *)getImageFromView:(UIView *)view {
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, UIScreen.mainScreen.scale);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 - (void)dealloc {
     NSLog(@"dealloc");
-}
-
-- (UIView *)deepCopyView:(UIView *)view {
-    UIView *copyView;
-    copyView = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:view]];
-    if ([_prototypeView isKindOfClass:[UIImageView class]]) {
-        ((UIImageView *)_prototypeView).image = ((UIImageView *)view).image;
-    } else if ([_prototypeView isKindOfClass:[UIButton class]]) {
-        UIImage *image = [((UIButton *)view) backgroundImageForState:UIControlStateNormal];
-        [((UIButton *)_prototypeView) setBackgroundImage:image forState:UIControlStateNormal];
-    }
-    copyView.layer.backgroundColor = view.layer.backgroundColor;
-    copyView.layer.cornerRadius = view.layer.cornerRadius;
-    copyView.layer.borderColor = view.layer.borderColor;
-    copyView.layer.borderWidth = view.layer.borderWidth;
-    copyView.layer.masksToBounds = view.layer.masksToBounds;
-    copyView.layer.mask = view.layer.mask;
-    return copyView;
-}
-
-- (void)setBubbleText:(NSString *)bubbleText {
-    _bubbleLabel.text = bubbleText;
 }
 
 @end

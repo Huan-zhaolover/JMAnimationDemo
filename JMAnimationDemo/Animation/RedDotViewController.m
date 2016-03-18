@@ -9,6 +9,7 @@
 #import "RedDotViewController.h"
 #import "RedDotView.h"
 #import "RedDotCell.h"
+#import "RedDotCellModel.h"
 
 @interface RedDotViewController() <UITableViewDelegate, UITableViewDataSource>
 
@@ -16,6 +17,7 @@
 
 @implementation RedDotViewController {
     UITableView *_tableView;
+    NSArray *_array;
     RedDotView *_redDotView;
     RedDotView *_redDotView2;
 }
@@ -29,33 +31,59 @@
     _tableView.dataSource = self;
     _tableView.delegate = self;
     [_tableView registerClass:[RedDotCell class] forCellReuseIdentifier:@"cell"];
-    
-    UIButton *view = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
-    [view setBackgroundImage:[UIImage imageNamed:@"avatar.jpg"] forState:UIControlStateNormal];
-    
-    [_redDotView2 attach:view];
+
     [self.view addSubview:_tableView];
-    [self.view addSubview:view];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 100; i ++) {
+        RedDotCellModel *model = [[RedDotCellModel alloc] init];
+        model.name = @"name";
+        model.message = @"这是一条信息";
+        model.time = @"19:00";
+        model.messageCount = @99;
+        model.avatar = [UIImage imageNamed:@"avatar.jpg"];
+        [array addObject:model];
+    }
+    _array = array.copy;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1000;
+    return _array.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    RedDotCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    cell.nameLabel.text = @"Name";
-    cell.messageLabel.text = @"阳春三月";
-    cell.timeLabel.text = @"19:00";
-    cell.redDotLabel.text = @"99+";
-    
+    RedDotCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    RedDotCellModel *model = _array[indexPath.row];
+    cell.cellModel = model;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [_redDotView attach:cell.avatarView];
-    [_redDotView attach:cell.nameLabel];
-    [_redDotView attach:cell.messageLabel];
-    [_redDotView attach:cell.timeLabel];
-    [_redDotView attach:cell.redDotLabel];
-    [_redDotView2 attach:cell.contentView];
+    [_redDotView attach:cell.avatarView withSeparateBlock:^BOOL(UIView *view) {
+        return NO;
+    }];
+    
+    [_redDotView attach:cell.nameLabel withSeparateBlock:nil];
+    
+    [_redDotView attach:cell.messageLabel withSeparateBlock:^BOOL(UIView *view) {
+        model.message = nil;
+        return YES;
+    }];
+    
+    [_redDotView attach:cell.timeLabel withSeparateBlock:^BOOL(UIView *view) {
+        model.time = nil;
+        return YES;
+    }];
+    
+    [_redDotView attach:cell.redDotLabel withSeparateBlock:^BOOL(UIView *view) {
+        model.messageCount = nil;
+        return YES;
+    }];
+    
+    [_redDotView2 attach:cell.contentView withSeparateBlock:^BOOL(UIView *view) {
+        model.contentViewHidden = YES;
+        return YES;
+    }];
     return cell;
 }
 

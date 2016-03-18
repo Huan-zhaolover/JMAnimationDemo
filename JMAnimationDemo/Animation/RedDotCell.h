@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "RedDotCellModel.h"
+
 @interface RedDotCell : UITableViewCell
+
+@property (nonatomic, strong) RedDotCellModel *cellModel;
 
 @property (nonatomic, strong) UIImageView *avatarView;
 @property (nonatomic, strong) UILabel *nameLabel;

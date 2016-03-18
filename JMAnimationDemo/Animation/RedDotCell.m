@@ -7,6 +7,7 @@
 //
 
 #import "RedDotCell.h"
+#import "RedDotCellModel.h"
 
 @implementation RedDotCell
 
@@ -48,5 +49,45 @@
     _redDotLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_redDotLabel];
 }
+
+- (void)setCellModel:(RedDotCellModel *)cellModel {
+    _cellModel = cellModel;
+    if (cellModel.avatar) {
+        _avatarView.image = cellModel.avatar;
+        _avatarView.hidden = NO;
+    } else {
+        _avatarView.hidden = YES;
+    }
+    if (cellModel.name) {
+        _nameLabel.text = cellModel.name;
+        _nameLabel.hidden = NO;
+    } else {
+        _nameLabel.hidden = YES;
+    }
+    if (cellModel.name) {
+        _messageLabel.text = cellModel.message;
+        _messageLabel.hidden = NO;
+    } else {
+        _messageLabel.hidden = YES;
+    }
+    if (cellModel.name) {
+        _timeLabel.text = cellModel.time;
+        _timeLabel.hidden = NO;
+    } else {
+        _timeLabel.hidden = YES;
+    }
+    if (cellModel.name) {
+        _redDotLabel.text = cellModel.messageCount.description;
+        _redDotLabel.hidden = NO;
+    } else {
+        _redDotLabel.hidden = YES;
+    }
+    if (cellModel.contentViewHidden) {
+        self.contentView.hidden = YES;
+    } else {
+        self.contentView.hidden = NO;
+    }
+}
+
 
 @end

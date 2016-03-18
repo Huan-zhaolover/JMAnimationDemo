@@ -10,12 +10,16 @@
 
 @interface RedDotView : UIView
 
-@property (nonatomic, copy) NSString *bubbleText;
-
-- (instancetype)initWithFrame:(CGRect)frame bubbleWidth:(CGFloat)bubbleWidth viscosity:(CGFloat)viscosity bubbleColor:(UIColor *)bubbleColor superView:(UIView *)containerView;
+typedef BOOL (^SeparateBlock)(UIView *view);
 
 - (instancetype)initWithMaxDistance:(CGFloat)maxDistance bubbleColor:(UIColor *)bubbleColor;
 
-- (void)attach:(UIView *)item;
+/**
+ *  黏上这个 view ,
+ *
+ *  @param item           被黏住的 view 。
+ *  @param separateBlock  分离后执行的 block，返回 YES 执行爆炸动画。
+ */
+- (void)attach:(UIView *)item withSeparateBlock:(SeparateBlock)separateBlock;
 
 @end
