@@ -28,11 +28,11 @@
     _avatarView.layer.borderColor = [UIColor blueColor].CGColor;
     [self.contentView addSubview:_avatarView];
     
-    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 10, 50, 20)];
+    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 10, 80, 20)];
     _nameLabel.textColor = [UIColor blackColor];
     [self.contentView addSubview:_nameLabel];
     
-    _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 30, 80, 20)];
+    _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 30, 120, 20)];
     _messageLabel.textColor = [UIColor blackColor];
     _messageLabel.textColor = [UIColor lightGrayColor];
     [self.contentView addSubview:_messageLabel];
@@ -83,9 +83,9 @@
         _redDotLabel.hidden = YES;
     }
     if (cellModel.contentViewHidden) {
-        self.contentView.hidden = YES;
+        self.hidden = YES;
     } else {
-        self.contentView.hidden = NO;
+        self.hidden = NO;
     }
 }
 

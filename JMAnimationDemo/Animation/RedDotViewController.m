@@ -24,14 +24,23 @@
 
 -(void)loadView {
     [super loadView];
-    _redDotView = [[RedDotView alloc] initWithMaxDistance:100 bubbleColor:[UIColor redColor]];
-    _redDotView2 = [[RedDotView alloc] initWithMaxDistance:200 bubbleColor:[UIColor blueColor]];
+    _redDotView = [[RedDotView alloc] initWithMaxDistance:50 bubbleColor:[UIColor redColor]];
+    _redDotView2 = [[RedDotView alloc] initWithMaxDistance:150 bubbleColor:[UIColor redColor]];
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     _tableView.rowHeight = 55;
     _tableView.dataSource = self;
     _tableView.delegate = self;
     [_tableView registerClass:[RedDotCell class] forCellReuseIdentifier:@"cell"];
-
+    
+    UILabel *rightLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
+    rightLabel.text = @"菜单";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightLabel];
+    
+    [_redDotView attach:rightLabel withSeparateBlock:^BOOL(UIView *view) {
+        self.navigationItem.rightBarButtonItem = nil;
+        return YES;
+    }];
+    
     [self.view addSubview:_tableView];
 }
 

@@ -12,6 +12,14 @@
 
 typedef BOOL (^SeparateBlock)(UIView *view);
 
+/**
+ *  初始化黏贴板
+ *
+ *  @param maxDistance 最大距离
+ *  @param bubbleColor 黏贴效果颜色
+ *
+ *  @return 一个黏贴板
+ */
 - (instancetype)initWithMaxDistance:(CGFloat)maxDistance bubbleColor:(UIColor *)bubbleColor;
 
 /**
