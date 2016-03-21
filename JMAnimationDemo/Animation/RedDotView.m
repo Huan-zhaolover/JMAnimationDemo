@@ -9,36 +9,44 @@
 #import "RedDotView.h"
 
 @implementation RedDotView {
-    NSMutableDictionary *_separateBlockDictionary;//view消失时触发的block
-    UIPanGestureRecognizer *_gesture;//手势。
-    UIBezierPath *_cutePath;
-    UIColor *_fillColorForCute;
-    UIDynamicAnimator *_animator;
-    UISnapBehavior *_snap;
-    UIView *_touchView;
-//    CGFloat _viscosity;
-    UIColor *_bubbleColor;
-    CGFloat _bubbleWidth;
-    UIImageView *_prototypeView;
-    UIView *_frontView;
+    NSMutableDictionary *_separateBlockDictionary;//存储 view 消失时触发的 block 的字典
+    UIPanGestureRecognizer *_gesture;//手势监控。
+    UIBezierPath *_cutePath;//画黏贴效果的贝塞尔曲线
+    UIColor *_fillColorForCute;//填充黏贴效果的颜色
+    UIView *_touchView;//被手势拖动的 view
+    UIColor *_bubbleColor;//黏贴效果的颜色
+    CGFloat _bubbleWidth;//被拖动的 view 的最小边长
+    UIImageView *_prototypeView; //替换被拖动 view 的 imageView
     UILabel *_bubbleLabel;
     
-//    UIView *_animationView;
-    
-    UIView *_backView;
     CGFloat _R1, _R2, _X1, _X2, _Y1, _Y2;
     CGFloat _centerDistance;
     CGFloat _maxDistance;
     CGFloat _cosDigree;
     CGFloat _sinDigree;
+    //圆的关键点 A,B,E 是初始位置上圆的左右后三点，C，D,F 是移动位置上的圆的三点，O，P两个圆之间画弧线所需要的点，_pointTemp是辅助点。
+    CGPoint _pointA, _pointB, _pointC, _pointD, _pointE, _pointF, _pointO, _pointP, _pointTemp, _pointTemp2;
+    //画圆弧的辅助点
+    CGPoint _pointDF1, _pointDF2, _pointFC1, _pointFC2, _pointBE1, _pointBE2, _pointEA1, _pointEA2;
+    CGFloat _offset1, _offset2;
+    CGFloat _percentage;
     
-    CGPoint _pointA, _pointB, _pointC, _pointD, _pointO, _pointP, _pointTemp, _pointTemp2;
     CGPoint _deviationPoint;
-    CGRect _oldBackViewFrame;
     CGPoint _oldBackViewCenter;
     CAShapeLayer *_shapeLayer;
-    
-//    CGPoint _touchesStartPoint;
+}
+
+- (instancetype)initWithMaxDistance:(CGFloat)maxDistance bubbleColor:(UIColor *)bubbleColor {
+    self = [super initWithFrame:[UIScreen mainScreen].bounds];
+    if (self) {
+        _bubbleColor = bubbleColor;
+        _maxDistance = maxDistance;
+        _prototypeView = [[UIImageView alloc] init];
+        _separateBlockDictionary = [[NSMutableDictionary alloc] init];
+        self.userInteractionEnabled = NO;
+        self.backgroundColor = [UIColor clearColor];
+    }
+    return self;
 }
 
 - (void)attach:(UIView *)item withSeparateBlock:(SeparateBlock)separateBlock {
@@ -58,36 +66,26 @@
     }
 }
 
-- (instancetype)initWithMaxDistance:(CGFloat)maxDistance bubbleColor:(UIColor *)bubbleColor {
-    self = [super initWithFrame:[UIScreen mainScreen].bounds];
-    if (self) {
-        _bubbleColor = bubbleColor;
-        _maxDistance = maxDistance;
-        _prototypeView = [[UIImageView alloc] init];
-        _separateBlockDictionary = [[NSMutableDictionary alloc] init];
-        self.userInteractionEnabled = NO;
-        self.backgroundColor = [UIColor clearColor];
-    }
-    return self;
-}
-
 - (void)setUp {
+    [[[UIApplication sharedApplication].delegate window] addSubview:self];
+    _prototypeView.image = [self getImageFromView:_touchView];
+    _bubbleWidth = MIN(_touchView.frame.size.width, _touchView.frame.size.height) - 1;
+    _centerDistance = 0;
+    CGPoint animationViewOrigin = [_touchView convertPoint:CGPointMake(0, 0) toView:self];
+    _prototypeView.frame = CGRectMake(animationViewOrigin.x, animationViewOrigin.y, _touchView.frame.size.width, _touchView.frame.size.height);
+    [self addSubview:_prototypeView];
+    _oldBackViewCenter = CGPointMake(animationViewOrigin.x + _touchView.frame.size.width/2, animationViewOrigin.y + _touchView.frame.size.height/2);
+    NSLog(@"_oldBackViewCenter%f, %f", _oldBackViewCenter.x, _oldBackViewCenter.y);
+    _fillColorForCute = _bubbleColor;
+    _touchView.hidden = YES;
+    self.userInteractionEnabled = YES;
+    
     _shapeLayer = [CAShapeLayer layer];
     _R2 = _bubbleWidth/2;
-    
-    _backView = [[UIView alloc] initWithFrame:CGRectMake(_prototypeView.center.x - _R2, _prototypeView.center.y - _R2, _bubbleWidth, _bubbleWidth)];
     _R1 = _bubbleWidth/2;
-    _backView.layer.cornerRadius = _R1;
-    _backView.backgroundColor = _bubbleColor;
     
-    _frontView = [[UIView alloc] initWithFrame:CGRectMake(_prototypeView.center.x - _R1, _prototypeView.center.y - _R1, _bubbleWidth, _bubbleWidth)];
-    _frontView.layer.cornerRadius = _R2;
-    _frontView.backgroundColor = _bubbleColor;
-    [self addSubview:_backView];
-    [self addSubview:_frontView];
-    [self addSubview:_prototypeView];
-    _X1 = _backView.center.x;
-    _Y1 = _backView.center.y;
+    _X1 = _oldBackViewCenter.x;
+    _Y1 = _oldBackViewCenter.y;
     _X2 = _prototypeView.center.x;
     _Y2 = _prototypeView.center.y;
     
@@ -97,9 +95,6 @@
     _pointD = CGPointMake(_X2 - _R2, _Y2);
     _pointO = CGPointMake(_X1 - _R1, _Y1);
     _pointP = CGPointMake(_X2 + _R2, _Y2);
-    
-    _oldBackViewFrame = _backView.frame;
-    _oldBackViewCenter = _backView.center;
 }
 
 - (void)handleDragGesture:(UIPanGestureRecognizer *)gesture {
@@ -108,32 +103,16 @@
         _touchView = gesture.view;
         CGPoint dragPountInView = [gesture locationInView:gesture.view];
         _deviationPoint = CGPointMake(dragPountInView.x - gesture.view.frame.size.width/2, dragPountInView.y - gesture.view.frame.size.height/2);
-        [[[UIApplication sharedApplication].delegate window] addSubview:self];
-        _prototypeView.image = [self getImageFromView:_touchView];
-        _bubbleWidth = MIN(_touchView.frame.size.width, _touchView.frame.size.height) - 1;
-        _centerDistance = 0;
-        CGPoint animationViewOrigin = [_touchView convertPoint:CGPointMake(0, 0) toView:self];
-        _prototypeView.frame = CGRectMake(animationViewOrigin.x, animationViewOrigin.y, _touchView.frame.size.width, _touchView.frame.size.height);
         [self setUp];
-        _fillColorForCute = _bubbleColor;
-        _touchView.hidden = YES;
-        _backView.hidden = NO;
-        _frontView.hidden = NO;
-        self.userInteractionEnabled = YES;
     } else if (gesture.state == UIGestureRecognizerStateChanged) {
         _prototypeView.center =  CGPointMake(dragPoint.x - _deviationPoint.x, dragPoint.y - _deviationPoint.y);
-        _frontView.center = _prototypeView.center;
         if (_centerDistance > _maxDistance) {
             _fillColorForCute = [UIColor clearColor];
-            _backView.hidden = YES;
-            _frontView.hidden = YES;
             [_shapeLayer removeFromSuperlayer];
         }
         [self drawRect];
     } else if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled || gesture.state == UIGestureRecognizerStateFailed) {
         _fillColorForCute = [UIColor clearColor];
-        _backView.hidden = YES;
-        _frontView.hidden = YES;
         [_shapeLayer removeFromSuperlayer];
         if (_centerDistance > _maxDistance) {
             SeparateBlock block = _separateBlockDictionary[[NSValue valueWithNonretainedObject:_touchView]];
@@ -153,8 +132,8 @@
 }
 
 - (void)drawRect {
-    _X1 = _backView.center.x;
-    _Y1 = _backView.center.y;
+    _X1 = _oldBackViewCenter.x;
+    _Y1 = _oldBackViewCenter.y;
     _X2 = _prototypeView.center.x;
     _Y2 = _prototypeView.center.y;
     
@@ -166,29 +145,45 @@
         _cosDigree = (_Y2 - _Y1)/_centerDistance;
         _sinDigree = (_X2 - _X1)/_centerDistance;
     }
-    CGFloat percentage = _centerDistance/_maxDistance;
-    _R1 = (2 - percentage)*_oldBackViewFrame.size.width/4;
+     _percentage = _centerDistance/_maxDistance;
+    _R1 = (2 - _percentage)*_bubbleWidth/4;
+    
     _pointA = CGPointMake(_X1 - _R1*_cosDigree, _Y1 + _R1*_sinDigree);
     _pointB = CGPointMake(_X1 + _R1*_cosDigree, _Y1 - _R1*_sinDigree);
+    _pointE = CGPointMake(_X1 - _R1*_sinDigree, _Y1 - _R1*_cosDigree);
     _pointC = CGPointMake(_X2 + _R2*_cosDigree, _Y2 - _R2*_sinDigree);
     _pointD = CGPointMake(_X2 - _R2*_cosDigree, _Y2 + _R2*_sinDigree);
-    _pointTemp = CGPointMake(_pointD.x + percentage*(_pointC.x - _pointD.x), _pointD.y + percentage*(_pointC.y - _pointD.y));//关键点
-    _pointTemp2 = CGPointMake(_pointD.x + (1 - percentage)*(_pointC.x - _pointD.x), _pointD.y + (1 - percentage)*(_pointC.y - _pointD.y));
+    _pointF = CGPointMake(_X2 + _R2*_sinDigree, _Y2 + _R2*_cosDigree);
+    //offset 指的是 _pointA-_pointEA2,_pointEA1-_pointE... 的距离，当该值设置为正方形边长的 1/3.6 倍时，画出来的圆弧近似贴合 1/4 圆。
+    _offset1 = _R1*2/3.6;
+    _offset2 = _R2*2/3.6;
+    
+    _pointEA2 = CGPointMake(_pointA.x - _offset1*_sinDigree, _pointA.y - _offset1*_cosDigree);
+    _pointEA1 = CGPointMake(_pointE.x - _offset1*_cosDigree, _pointE.y + _offset1*_sinDigree);
+    _pointBE2 = CGPointMake(_pointE.x + _offset1*_cosDigree, _pointE.y - _offset1*_sinDigree);
+    _pointBE1 = CGPointMake(_pointB.x - _offset1*_sinDigree, _pointB.y - _offset1*_cosDigree);
+    
+    _pointFC2 = CGPointMake(_pointC.x + _offset2*_sinDigree, _pointC.y + _offset2*_cosDigree);
+    _pointFC1 = CGPointMake(_pointF.x + _offset2*_cosDigree, _pointF.y - _offset2*_sinDigree);
+    _pointDF2 = CGPointMake(_pointF.x - _offset2*_cosDigree, _pointF.y + _offset2*_sinDigree);
+    _pointDF1 = CGPointMake(_pointD.x + _offset2*_sinDigree, _pointD.y + _offset2*_cosDigree);
+    
+    _pointTemp = CGPointMake(_pointD.x + _percentage*(_pointC.x - _pointD.x), _pointD.y + _percentage*(_pointC.y - _pointD.y));//关键点
+    _pointTemp2 = CGPointMake(_pointD.x + (1 - _percentage)*(_pointC.x - _pointD.x), _pointD.y + (1 - _percentage)*(_pointC.y - _pointD.y));
     _pointO = CGPointMake(_pointA.x + (_pointTemp.x - _pointA.x)/2, _pointA.y + (_pointTemp.y - _pointA.y)/2);
     _pointP = CGPointMake(_pointB.x + (_pointTemp2.x - _pointB.x)/2, _pointB.y + (_pointTemp2.y - _pointB.y)/2);
     
-    _backView.center = _oldBackViewCenter;
-    _backView.bounds = CGRectMake(0, 0, _R1*2, _R1*2);
-    _backView.layer.cornerRadius = _R1;
-    
     _cutePath = [UIBezierPath bezierPath];
-    [_cutePath moveToPoint:_pointA];
+    [_cutePath moveToPoint:_pointB];
+    [_cutePath addCurveToPoint:_pointE controlPoint1:_pointBE1 controlPoint2:_pointBE2];
+    [_cutePath addCurveToPoint:_pointA controlPoint1:_pointEA1 controlPoint2:_pointEA2];
     [_cutePath addQuadCurveToPoint:_pointD controlPoint:_pointO];
-    [_cutePath addLineToPoint:_pointC];
-    [_cutePath addQuadCurveToPoint:_pointB controlPoint:_pointP];
-    [_cutePath moveToPoint:_pointA];
     
-    if (_backView.hidden == NO) {
+    [_cutePath addCurveToPoint:_pointF controlPoint1:_pointDF1 controlPoint2:_pointDF2];
+    [_cutePath addCurveToPoint:_pointC controlPoint1:_pointFC1 controlPoint2:_pointFC2];
+    [_cutePath addQuadCurveToPoint:_pointB controlPoint:_pointP];
+    
+    if (_centerDistance < _maxDistance) {
         _shapeLayer.path = [_cutePath CGPath];
         _shapeLayer.fillColor = [_fillColorForCute CGColor];
         [self.layer insertSublayer:_shapeLayer below:_prototypeView.layer];
@@ -231,12 +226,6 @@
             [self removeFromSuperview];
         }
     }];
-}
-
-- (UIView *)deepCopyView:(UIView *)view {
-    UIImageView *copyView = [[UIImageView alloc] initWithFrame:view.frame];
-    copyView.image = [self getImageFromView:view];
-    return copyView;
 }
 
 - (UIImage *)getImageFromView:(UIView *)view {
