@@ -24,7 +24,7 @@
 
 -(void)loadView {
     [super loadView];
-    _redDotView = [[RedDotView alloc] initWithMaxDistance:50 bubbleColor:[UIColor redColor]];
+    _redDotView = [[RedDotView alloc] initWithMaxDistance:60 bubbleColor:[UIColor redColor]];
     _redDotView2 = [[RedDotView alloc] initWithMaxDistance:150 bubbleColor:[UIColor redColor]];
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     _tableView.rowHeight = 55;
@@ -36,8 +36,9 @@
     rightLabel.text = @"菜单";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightLabel];
     
+    __weak typeof(self) weakSelf = self;
     [_redDotView attach:rightLabel withSeparateBlock:^BOOL(UIView *view) {
-        self.navigationItem.rightBarButtonItem = nil;
+        weakSelf.navigationItem.rightBarButtonItem = nil;
         return YES;
     }];
     
@@ -89,7 +90,7 @@
         return YES;
     }];
     
-    [_redDotView2 attach:cell.contentView withSeparateBlock:^BOOL(UIView *view) {
+    [_redDotView2 attach:cell withSeparateBlock:^BOOL(UIView *view) {
         model.contentViewHidden = YES;
         return YES;
     }];

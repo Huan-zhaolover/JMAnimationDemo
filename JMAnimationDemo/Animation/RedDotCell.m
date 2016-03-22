@@ -64,19 +64,19 @@
     } else {
         _nameLabel.hidden = YES;
     }
-    if (cellModel.name) {
+    if (cellModel.message) {
         _messageLabel.text = cellModel.message;
         _messageLabel.hidden = NO;
     } else {
         _messageLabel.hidden = YES;
     }
-    if (cellModel.name) {
+    if (cellModel.time) {
         _timeLabel.text = cellModel.time;
         _timeLabel.hidden = NO;
     } else {
         _timeLabel.hidden = YES;
     }
-    if (cellModel.name) {
+    if (cellModel.messageCount) {
         _redDotLabel.text = cellModel.messageCount.description;
         _redDotLabel.hidden = NO;
     } else {

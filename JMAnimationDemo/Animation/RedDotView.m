@@ -82,11 +82,6 @@ typedef NS_ENUM(NSUInteger, AdhesivePlateStatus) {
         [self setUp];
     } else if (gesture.state == UIGestureRecognizerStateChanged) {
         _prototypeView.center =  CGPointMake(dragPoint.x - _deviationPoint.x, dragPoint.y - _deviationPoint.y);
-        if (_centerDistance > _maxDistance) {
-            _status = AdhesivePlateSeparate;
-            _fillColorForCute = [UIColor clearColor];
-            [_shapeLayer removeFromSuperlayer];
-        }
         [self drawRect];
     } else if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled || gesture.state == UIGestureRecognizerStateFailed) {
         if (_centerDistance > _maxDistance) {
@@ -140,6 +135,12 @@ typedef NS_ENUM(NSUInteger, AdhesivePlateStatus) {
     if (_status == AdhesivePlateSeparate) {
         return;
     }
+    if (_centerDistance > _maxDistance) {
+        _status = AdhesivePlateSeparate;
+        _fillColorForCute = [UIColor clearColor];
+        [_shapeLayer removeFromSuperlayer];
+        return;
+    }
     if (_centerDistance == 0) {
         _cosDigree = 1;
         _sinDigree = 0;
@@ -148,7 +149,7 @@ typedef NS_ENUM(NSUInteger, AdhesivePlateStatus) {
         _sinDigree = (_X2 - _X1)/_centerDistance;
     }
      _percentage = _centerDistance/_maxDistance;
-    _R1 = (2 - _percentage)*_bubbleWidth/4;
+    _R1 = (2 - _percentage/2)*_bubbleWidth/4;
     _offset1 = _R1*2/3.6;
     _offset2 = _R2*2/3.6;
     _pointA = CGPointMake(_X1 - _R1*_cosDigree, _Y1 + _R1*_sinDigree);
@@ -174,7 +175,7 @@ typedef NS_ENUM(NSUInteger, AdhesivePlateStatus) {
     _pointO = CGPointMake(_pointA.x + (_pointTemp.x - _pointA.x)/2, _pointA.y + (_pointTemp.y - _pointA.y)/2);
     _pointP = CGPointMake(_pointB.x + (_pointTemp2.x - _pointB.x)/2, _pointB.y + (_pointTemp2.y - _pointB.y)/2);
     
-    _offset1 = _centerDistance/8 * _percentage;
+    _offset1 = _centerDistance/8;
     _offset2 =_centerDistance/8;
     
     _pointAO1 = CGPointMake(_pointA.x + _offset1*_sinDigree, _pointA.y + _offset1*_cosDigree);
@@ -268,10 +269,6 @@ typedef NS_ENUM(NSUInteger, AdhesivePlateStatus) {
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
-}
-
-- (void)dealloc {
-    NSLog(@"dealloc");
 }
 
 @end
