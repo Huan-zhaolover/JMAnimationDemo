@@ -18,12 +18,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    _window.backgroundColor = [UIColor whiteColor];
-    _window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[ViewController new]];
     [_window makeKeyAndVisible];
+    ViewController *VC = [[ViewController alloc] init];
+    _window.rootViewController = [[UINavigationController alloc] initWithRootViewController:VC];
+    VC.navigationController.navigationBar.barTintColor = [self colorFromRGB:0x99CCCC];
+    
+    [self initLaunchScreenAnimation];
+    
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -45,6 +49,74 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)initLaunchScreenAnimation {
+    UIView *backgroundView = [[UIView alloc] initWithFrame:_window.bounds];
+    backgroundView.backgroundColor = [self colorFromRGB:0x99CCCC];
+    [_window addSubview:backgroundView];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _window.bounds.size.width, _window.bounds.size.height)];
+    imageView.image = [self getImageFromView:_window.rootViewController.view];
+    [_window addSubview:imageView];
+    
+    CALayer *maskLayer = [CALayer layer];
+    maskLayer.contents = (id)[UIImage imageNamed:@"logo"].CGImage;
+    maskLayer.position = CGPointMake(_window.bounds.size.width/2, _window.bounds.size.height/2 - 0);
+    maskLayer.bounds = CGRectMake(0, 0, 60, 60);
+    imageView.layer.mask = maskLayer;
+    
+    UIView *maskBackgroundView = [[UIView alloc] initWithFrame:imageView.bounds];
+    maskBackgroundView.backgroundColor = [UIColor whiteColor];
+    [imageView addSubview:maskBackgroundView];
+    [imageView bringSubviewToFront:maskBackgroundView];
+    
+    CAKeyframeAnimation *logoMaskAnimation = [CAKeyframeAnimation animationWithKeyPath:@"bounds"];
+    logoMaskAnimation.duration = 1.0f;
+    logoMaskAnimation.beginTime = CACurrentMediaTime() + 1.0f;
+    
+    CGRect initalBounds = maskLayer.bounds;
+    CGRect secondBounds = CGRectMake(0, 0, 50, 50);
+    CGRect finalBounds = CGRectMake(0, 0, 2000, 2000);
+    
+    logoMaskAnimation.values = @[[NSValue valueWithCGRect:initalBounds], [NSValue valueWithCGRect:secondBounds], [NSValue valueWithCGRect:finalBounds]];
+    logoMaskAnimation.keyTimes = @[@(0), @(0.5),@(1)];
+    logoMaskAnimation.timingFunctions = @[[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+    logoMaskAnimation.removedOnCompletion = NO;
+    logoMaskAnimation.fillMode = kCAFillModeForwards;
+    [imageView.layer.mask addAnimation:logoMaskAnimation forKey:@"logoMaskAnimation"];
+    
+    [UIView animateWithDuration:0.1 delay:1.35 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        maskBackgroundView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [maskBackgroundView removeFromSuperview];
+    }];
+    
+    [UIView animateWithDuration:0.25 delay:1.3 options:UIViewAnimationOptionTransitionNone  animations:^{
+        imageView.transform = CGAffineTransformMakeScale(1.1, 1.1);
+        maskBackgroundView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            imageView.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            imageView.hidden = YES;
+            imageView.layer.mask = nil;
+            backgroundView.hidden = YES;
+        }];
+    }];
+}
+
+
+- (UIColor *)colorFromRGB:(NSInteger)RGBValue {
+    return [UIColor colorWithRed:((float)((RGBValue & 0xFF0000) >> 16))/255.0 green:((float)((RGBValue & 0xFF00) >> 8))/255.0 blue:((float)(RGBValue & 0xFF))/255.0 alpha:1.0];
+}
+
+- (UIImage *)getImageFromView:(UIView *)view {
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, UIScreen.mainScreen.scale);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 @end

@@ -20,7 +20,6 @@
 
 - (void)loadView {
     [super loadView];
-    self.title = @"首页";
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     _tableView.rowHeight = 44;
     _tableView.dataSource = self;
@@ -30,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"首页";
     _titles = @[].mutableCopy;
     _classNames = @[].mutableCopy;
     [self addCell:@"Animated circle" class:@"CircleViewController"];

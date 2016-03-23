@@ -17,6 +17,8 @@
 
 - (void)loadView {
     [super loadView];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     _circleView = [[CircleView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 320/2, self.view.frame.size.height/2 - 320/2, 320, 320)];
     _circleView.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
     [self.view addSubview:_circleView];

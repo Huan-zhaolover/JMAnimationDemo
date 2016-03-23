@@ -32,6 +32,7 @@
 		88E412251C97E26A004BB629 /* GooeySlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E412241C97E26A004BB629 /* GooeySlideMenuViewController.m */; };
 		88E412291C97E385004BB629 /* GooeySlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E412281C97E385004BB629 /* GooeySlideMenu.m */; };
 		88E4122C1C97E3DB004BB629 /* SlideMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E4122B1C97E3DB004BB629 /* SlideMenuButton.m */; };
+		88E86B121CA240BF0065FA09 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 88E86B111CA240BF0065FA09 /* logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		88E412281C97E385004BB629 /* GooeySlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GooeySlideMenu.m; sourceTree = "<group>"; };
 		88E4122A1C97E3DB004BB629 /* SlideMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideMenuButton.h; sourceTree = "<group>"; };
 		88E4122B1C97E3DB004BB629 /* SlideMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideMenuButton.m; sourceTree = "<group>"; };
+		88E86B111CA240BF0065FA09 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			children = (
 				88E411E21C969FE3004BB629 /* AppDelegate.h */,
 				88E411E31C969FE3004BB629 /* AppDelegate.m */,
+				88E86B111CA240BF0065FA09 /* logo.png */,
 				88E411E51C969FE4004BB629 /* ViewController.h */,
 				88E411E61C969FE4004BB629 /* ViewController.m */,
 				88E412201C970185004BB629 /* UIControl+YYAdd.h */,
@@ -362,6 +365,7 @@
 				88DF3F501C9A5AEE005CE224 /* red_dot_image_3.png in Resources */,
 				88E411EF1C969FE4004BB629 /* LaunchScreen.storyboard in Resources */,
 				88DF3F521C9A5AEE005CE224 /* red_dot_image_5.png in Resources */,
+				88E86B121CA240BF0065FA09 /* logo.png in Resources */,
 				88DF3F511C9A5AEE005CE224 /* red_dot_image_4.png in Resources */,
 				88E411EC1C969FE4004BB629 /* Assets.xcassets in Resources */,
 				88E411EA1C969FE4004BB629 /* Main.storyboard in Resources */,
