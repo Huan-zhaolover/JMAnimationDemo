@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="60" verticalCompressionResistancePriority="60" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="hFV-8N-Yxo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="60" verticalCompressionResistancePriority="60" image="loveShape.png" translatesAutoresizingMaskIntoConstraints="NO" id="hFV-8N-Yxo">
                                 <rect key="frame" x="270" y="270" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="SdH-sL-BSr"/>
@@ -38,7 +38,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo.png" width="1000" height="1000"/>
+        <image name="loveShape.png" width="60" height="60"/>
     </resources>
     <color key="tintColor" red="0.92363167384556411" green="1" blue="0.99026458316333155" alpha="1" colorSpace="calibratedRGB"/>
 </document>

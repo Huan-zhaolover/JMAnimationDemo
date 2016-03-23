@@ -28,7 +28,6 @@
     return YES;
 }
 
-
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -61,7 +60,7 @@
     [_window addSubview:imageView];
     
     CALayer *maskLayer = [CALayer layer];
-    maskLayer.contents = (id)[UIImage imageNamed:@"logo"].CGImage;
+    maskLayer.contents = (id)[UIImage imageNamed:@"loveShape"].CGImage;
     maskLayer.position = CGPointMake(_window.bounds.size.width/2, _window.bounds.size.height/2 - 0);
     maskLayer.bounds = CGRectMake(0, 0, 60, 60);
     imageView.layer.mask = maskLayer;
@@ -73,39 +72,36 @@
     
     CAKeyframeAnimation *logoMaskAnimation = [CAKeyframeAnimation animationWithKeyPath:@"bounds"];
     logoMaskAnimation.duration = 1.0f;
-    logoMaskAnimation.beginTime = CACurrentMediaTime() + 1.0f;
     
     CGRect initalBounds = maskLayer.bounds;
-    CGRect secondBounds = CGRectMake(0, 0, 50, 50);
+    CGRect secondBounds = CGRectMake(0, 0, 30, 30);
     CGRect finalBounds = CGRectMake(0, 0, 2000, 2000);
     
     logoMaskAnimation.values = @[[NSValue valueWithCGRect:initalBounds], [NSValue valueWithCGRect:secondBounds], [NSValue valueWithCGRect:finalBounds]];
     logoMaskAnimation.keyTimes = @[@(0), @(0.5),@(1)];
     logoMaskAnimation.timingFunctions = @[[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
     logoMaskAnimation.removedOnCompletion = NO;
+    logoMaskAnimation.beginTime = CACurrentMediaTime() + 1.0f;
     logoMaskAnimation.fillMode = kCAFillModeForwards;
     [imageView.layer.mask addAnimation:logoMaskAnimation forKey:@"logoMaskAnimation"];
     
-    [UIView animateWithDuration:0.1 delay:1.35 options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [UIView animateWithDuration:0.5 delay:1.35 options:UIViewAnimationOptionCurveEaseIn animations:^{
         maskBackgroundView.alpha = 0.0;
     } completion:^(BOOL finished) {
         [maskBackgroundView removeFromSuperview];
     }];
     
-    [UIView animateWithDuration:0.25 delay:1.3 options:UIViewAnimationOptionTransitionNone  animations:^{
+    [UIView animateWithDuration:0.5 delay:1.3 options:UIViewAnimationOptionTransitionNone  animations:^{
         imageView.transform = CGAffineTransformMakeScale(1.1, 1.1);
-        maskBackgroundView.alpha = 0.0;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             imageView.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
-            imageView.hidden = YES;
-            imageView.layer.mask = nil;
-            backgroundView.hidden = YES;
+            [imageView removeFromSuperview];
+            [backgroundView removeFromSuperview];
         }];
     }];
 }
-
 
 - (UIColor *)colorFromRGB:(NSInteger)RGBValue {
     return [UIColor colorWithRed:((float)((RGBValue & 0xFF0000) >> 16))/255.0 green:((float)((RGBValue & 0xFF00) >> 8))/255.0 blue:((float)(RGBValue & 0xFF))/255.0 alpha:1.0];

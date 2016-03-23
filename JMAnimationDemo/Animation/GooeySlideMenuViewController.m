@@ -20,7 +20,7 @@
 
 - (void)loadView {
     [super loadView];
-    _menu = [[GooeySlideMenu alloc] initWithTitle:@[@"首页", @"消息", @"发布", @"发现", @"个人", @"设置",@"关于"] withButtonHeight:44 withMenuColor:[UIColor redColor] withBackBlurStyle:UIBlurEffectStyleLight];
+    _menu = [[GooeySlideMenu alloc] initWithTitle:@[@"首页", @"消息", @"发布", @"发现", @"个人", @"设置",@"关于"] withButtonHeight:44 withMenuColor:[self colorFromRGB:0x99CCCC] withBackBlurStyle:UIBlurEffectStyleLight];
     _menu.menuClickBlock = ^(NSInteger index, NSString *title, NSInteger titleCounts) {
         NSLog(@"index:%ld title:%@ titleCounts:%ld", index, title, titleCounts);
     };
@@ -51,6 +51,10 @@
 
 - (void)buttonTrigger:(UIButton *)sender {
     [_menu trigger];
+}
+
+- (UIColor *)colorFromRGB:(NSInteger)RGBValue {
+    return [UIColor colorWithRed:((float)((RGBValue & 0xFF0000) >> 16))/255.0 green:((float)((RGBValue & 0xFF00) >> 8))/255.0 blue:((float)(RGBValue & 0xFF))/255.0 alpha:1.0];
 }
 
 @end
