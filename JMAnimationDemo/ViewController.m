@@ -35,6 +35,7 @@
     [self addCell:@"Animated circle" class:@"CircleViewController"];
     [self addCell:@"Gooey Slide Menu" class:@"GooeySlideMenuViewController"];
     [self addCell:@"Red Dot" class:@"RedDotViewController"];
+    [self addCell:@"Ping Transition" class:@"PingTransitionViewController"];
 }
 
 - (void)addCell:(NSString *)title class:(NSString *)className {
@@ -54,6 +55,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     cell.textLabel.text = _titles[indexPath.row];
+
     return cell;
 }
 

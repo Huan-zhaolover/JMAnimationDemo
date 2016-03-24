@@ -10,6 +10,9 @@
 		888DDC6B1C9902320002176E /* RedDotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 888DDC6A1C9902320002176E /* RedDotViewController.m */; };
 		888DDC6F1C9903900002176E /* RedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888DDC6E1C9903900002176E /* RedDotView.m */; };
 		8890C7771C9BB07200CE1580 /* RedDotCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8890C7761C9BB07200CE1580 /* RedDotCellModel.m */; };
+		88C610321CA38E09004151E9 /* PingTransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C610311CA38E09004151E9 /* PingTransitionViewController.m */; };
+		88C610361CA38EE5004151E9 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C610351CA38EE5004151E9 /* SecondViewController.m */; };
+		88C610391CA39620004151E9 /* PingTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C610381CA39620004151E9 /* PingTransition.m */; };
 		88DF3F4E1C9A5AEE005CE224 /* red_dot_image_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DF3F491C9A5AEE005CE224 /* red_dot_image_1.png */; };
 		88DF3F4F1C9A5AEE005CE224 /* red_dot_image_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DF3F4A1C9A5AEE005CE224 /* red_dot_image_2.png */; };
 		88DF3F501C9A5AEE005CE224 /* red_dot_image_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DF3F4B1C9A5AEE005CE224 /* red_dot_image_3.png */; };
@@ -59,6 +62,12 @@
 		888DDC6E1C9903900002176E /* RedDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedDotView.m; sourceTree = "<group>"; };
 		8890C7751C9BB07200CE1580 /* RedDotCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedDotCellModel.h; sourceTree = "<group>"; };
 		8890C7761C9BB07200CE1580 /* RedDotCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedDotCellModel.m; sourceTree = "<group>"; };
+		88C610301CA38E09004151E9 /* PingTransitionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingTransitionViewController.h; sourceTree = "<group>"; };
+		88C610311CA38E09004151E9 /* PingTransitionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingTransitionViewController.m; sourceTree = "<group>"; };
+		88C610341CA38EE5004151E9 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		88C610351CA38EE5004151E9 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		88C610371CA39620004151E9 /* PingTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingTransition.h; sourceTree = "<group>"; };
+		88C610381CA39620004151E9 /* PingTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingTransition.m; sourceTree = "<group>"; };
 		88DF3F491C9A5AEE005CE224 /* red_dot_image_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_dot_image_1.png; sourceTree = "<group>"; };
 		88DF3F4A1C9A5AEE005CE224 /* red_dot_image_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_dot_image_2.png; sourceTree = "<group>"; };
 		88DF3F4B1C9A5AEE005CE224 /* red_dot_image_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_dot_image_3.png; sourceTree = "<group>"; };
@@ -133,6 +142,15 @@
 				888DDC6E1C9903900002176E /* RedDotView.m */,
 			);
 			name = RedDot;
+			sourceTree = "<group>";
+		};
+		88C610331CA38E11004151E9 /* PingTransition */ = {
+			isa = PBXGroup;
+			children = (
+				88C610371CA39620004151E9 /* PingTransition.h */,
+				88C610381CA39620004151E9 /* PingTransition.m */,
+			);
+			name = PingTransition;
 			sourceTree = "<group>";
 		};
 		88DF3F481C9A5AD4005CE224 /* RedDotImage */ = {
@@ -230,6 +248,11 @@
 				8890C7751C9BB07200CE1580 /* RedDotCellModel.h */,
 				8890C7761C9BB07200CE1580 /* RedDotCellModel.m */,
 				888DDC6C1C9902400002176E /* RedDot */,
+				88C610301CA38E09004151E9 /* PingTransitionViewController.h */,
+				88C610311CA38E09004151E9 /* PingTransitionViewController.m */,
+				88C610341CA38EE5004151E9 /* SecondViewController.h */,
+				88C610351CA38EE5004151E9 /* SecondViewController.m */,
+				88C610331CA38E11004151E9 /* PingTransition */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -393,6 +416,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88C610361CA38EE5004151E9 /* SecondViewController.m in Sources */,
+				88C610391CA39620004151E9 /* PingTransition.m in Sources */,
 				88E4122C1C97E3DB004BB629 /* SlideMenuButton.m in Sources */,
 				88E411E71C969FE4004BB629 /* ViewController.m in Sources */,
 				88E412251C97E26A004BB629 /* GooeySlideMenuViewController.m in Sources */,
@@ -401,6 +426,7 @@
 				88E412221C970185004BB629 /* UIControl+YYAdd.m in Sources */,
 				88E4121F1C96B673004BB629 /* CircleLayer.m in Sources */,
 				888DDC6B1C9902320002176E /* RedDotViewController.m in Sources */,
+				88C610321CA38E09004151E9 /* PingTransitionViewController.m in Sources */,
 				888DDC6F1C9903900002176E /* RedDotView.m in Sources */,
 				88E412291C97E385004BB629 /* GooeySlideMenu.m in Sources */,
 				88E412181C96B58B004BB629 /* CircleViewController.m in Sources */,

@@ -91,7 +91,7 @@
         [maskBackgroundView removeFromSuperview];
     }];
     
-    [UIView animateWithDuration:0.5 delay:1.3 options:UIViewAnimationOptionTransitionNone  animations:^{
+    [UIView animateWithDuration:0.5 delay:1 options:UIViewAnimationOptionTransitionNone  animations:^{
         imageView.transform = CGAffineTransformMakeScale(1.1, 1.1);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
