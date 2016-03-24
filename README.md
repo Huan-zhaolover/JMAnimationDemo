@@ -24,3 +24,7 @@ RedDot
 LaunchScreenAnimation
 
 ![](https://github.com/raozhizhen/JMAnimationDemo/blob/master/GifFiles/LaunchScreenAnimation.gif?raw=true)
+
+PingTransition
+
+![](https://github.com/raozhizhen/JMAnimationDemo/blob/master/GifFiles/PingTransition.gif?raw=true)
