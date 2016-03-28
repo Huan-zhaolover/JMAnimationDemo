@@ -24,8 +24,8 @@
 
 -(void)loadView {
     [super loadView];
-    _redDotView = [[RedDotView alloc] initWithMaxDistance:60 bubbleColor:[UIColor redColor]];
-    _redDotView2 = [[RedDotView alloc] initWithMaxDistance:150 bubbleColor:[UIColor redColor]];
+    _redDotView = [[RedDotView alloc] initWithMaxDistance:75 bubbleColor:[self colorFromRGB:0x99CCCC]];
+    _redDotView2 = [[RedDotView alloc] initWithMaxDistance:150 bubbleColor:[self colorFromRGB:0x99CCCC]];
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     _tableView.rowHeight = 55;
     _tableView.dataSource = self;
@@ -95,6 +95,10 @@
         return YES;
     }];
     return cell;
+}
+
+- (UIColor *)colorFromRGB:(NSInteger)RGBValue {
+    return [UIColor colorWithRed:((float)((RGBValue & 0xFF0000) >> 16))/255.0 green:((float)((RGBValue & 0xFF00) >> 8))/255.0 blue:((float)(RGBValue & 0xFF))/255.0 alpha:1.0];
 }
 
 @end

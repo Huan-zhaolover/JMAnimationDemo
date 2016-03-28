@@ -39,7 +39,7 @@ static NSInteger kMenuBlankWidth = 50;
         _blurView.alpha = 0;
         
         _helperSideView = [[UIView alloc] initWithFrame:CGRectMake(-40, 0, 40, 40)];
-        _helperSideView.backgroundColor = [UIColor redColor];
+        _helperSideView.backgroundColor = [self colorFromRGB:0x99CCCC];
         _helperSideView.hidden = YES;
         [_keyWindow addSubview:_helperSideView];
         
@@ -212,5 +212,9 @@ static NSInteger kMenuBlankWidth = 50;
     
     _diff = sideRect.origin.x - centerRect.origin.x;
     [self setNeedsDisplay];
+}
+
+- (UIColor *)colorFromRGB:(NSInteger)RGBValue {
+    return [UIColor colorWithRed:((float)((RGBValue & 0xFF0000) >> 16))/255.0 green:((float)((RGBValue & 0xFF00) >> 8))/255.0 blue:((float)(RGBValue & 0xFF))/255.0 alpha:1.0];
 }
 @end

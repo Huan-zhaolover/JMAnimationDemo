@@ -98,12 +98,13 @@ static CGFloat outsideRectSize = 90;
     [ovalPath addCurveToPoint:pointA controlPoint1:C7 controlPoint2:C8];
     [ovalPath closePath];
     
-    CGContextAddPath(ctx, ovalPath.CGPath);
+    CGContextAddPath(ctx, ovalPath.CGPath); //CGPathRef
     CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
-    CGContextSetFillColorWithColor(ctx, [UIColor redColor].CGColor);
+    CGContextSetFillColorWithColor(ctx, [self colorFromRGB:0x99CCCC].CGColor);
+    CGContextDrawPath(ctx, kCGPathFillStroke);//同时给线条和线条包围的内部区域填充颜色
+    
     CGContextSetLineDash(ctx, 0, NULL, 0);
     //恢复成画直线
-    CGContextDrawPath(ctx, kCGPathFillStroke);//同时给线条和线条包围的内部区域填充颜色
     
     CGContextSetFillColorWithColor(ctx, [UIColor blueColor].CGColor);
     CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
@@ -137,6 +138,10 @@ static CGFloat outsideRectSize = 90;
         CGPoint point = [pointValue CGPointValue];
         CGContextFillRect(ctx, CGRectMake(point.x - 2, point.y - 2, 4, 4));
     }
+}
+
+- (UIColor *)colorFromRGB:(NSInteger)RGBValue {
+    return [UIColor colorWithRed:((float)((RGBValue & 0xFF0000) >> 16))/255.0 green:((float)((RGBValue & 0xFF00) >> 8))/255.0 blue:((float)(RGBValue & 0xFF))/255.0 alpha:1.0];
 }
 
 @end

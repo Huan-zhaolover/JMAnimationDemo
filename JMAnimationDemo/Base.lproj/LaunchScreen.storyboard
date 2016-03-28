@@ -38,7 +38,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="loveShape.png" width="60" height="60"/>
+        <image name="loveShape.png" width="1000" height="1000"/>
     </resources>
     <color key="tintColor" red="0.92363167384556411" green="1" blue="0.99026458316333155" alpha="1" colorSpace="calibratedRGB"/>
 </document>
