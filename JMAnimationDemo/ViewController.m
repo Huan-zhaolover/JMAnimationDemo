@@ -36,6 +36,7 @@
     [self addCell:@"Gooey Slide Menu" class:@"GooeySlideMenuViewController"];
     [self addCell:@"Red Dot" class:@"RedDotViewController"];
     [self addCell:@"Ping Transition" class:@"PingTransitionViewController"];
+    [self addCell:@"tableViewCell Animation" class:@"JMTableViewController"];
 }
 
 - (void)addCell:(NSString *)title class:(NSString *)className {

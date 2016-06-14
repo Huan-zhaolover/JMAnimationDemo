@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EC7C4811D0FFD4500074F46 /* JMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC7C4801D0FFD4500074F46 /* JMTableViewController.m */; };
 		888DDC6B1C9902320002176E /* RedDotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 888DDC6A1C9902320002176E /* RedDotViewController.m */; };
 		888DDC6F1C9903900002176E /* RedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888DDC6E1C9903900002176E /* RedDotView.m */; };
 		8890C7771C9BB07200CE1580 /* RedDotCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8890C7761C9BB07200CE1580 /* RedDotCellModel.m */; };
@@ -56,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1EC7C47F1D0FFD4500074F46 /* JMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMTableViewController.h; sourceTree = "<group>"; };
+		1EC7C4801D0FFD4500074F46 /* JMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMTableViewController.m; sourceTree = "<group>"; };
 		888DDC691C9902320002176E /* RedDotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedDotViewController.h; sourceTree = "<group>"; };
 		888DDC6A1C9902320002176E /* RedDotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedDotViewController.m; sourceTree = "<group>"; };
 		888DDC6D1C9903900002176E /* RedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedDotView.h; sourceTree = "<group>"; };
@@ -253,6 +256,8 @@
 				88C610341CA38EE5004151E9 /* SecondViewController.h */,
 				88C610351CA38EE5004151E9 /* SecondViewController.m */,
 				88C610331CA38E11004151E9 /* PingTransition */,
+				1EC7C47F1D0FFD4500074F46 /* JMTableViewController.h */,
+				1EC7C4801D0FFD4500074F46 /* JMTableViewController.m */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 				TargetAttributes = {
 					88E411DB1C969FE3004BB629 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 9NTKSX82K9;
 					};
 					88E411F41C969FE4004BB629 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -422,6 +428,7 @@
 				88E411E71C969FE4004BB629 /* ViewController.m in Sources */,
 				88E412251C97E26A004BB629 /* GooeySlideMenuViewController.m in Sources */,
 				88E4121C1C96B657004BB629 /* CircleView.m in Sources */,
+				1EC7C4811D0FFD4500074F46 /* JMTableViewController.m in Sources */,
 				88E411E41C969FE3004BB629 /* AppDelegate.m in Sources */,
 				88E412221C970185004BB629 /* UIControl+YYAdd.m in Sources */,
 				88E4121F1C96B673004BB629 /* CircleLayer.m in Sources */,
