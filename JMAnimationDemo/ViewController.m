@@ -37,6 +37,7 @@
     [self addCell:@"Red Dot" class:@"RedDotViewController"];
     [self addCell:@"Ping Transition" class:@"PingTransitionViewController"];
     [self addCell:@"tableViewCell Animation" class:@"JMTableViewController"];
+    [self addCell:@"PopUpViewController" class:@"PopUpViewController"];
 }
 
 - (void)addCell:(NSString *)title class:(NSString *)className {
@@ -70,5 +71,15 @@
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+
+- (UIImage *)getImageFromView:(UIView *)view {
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, UIScreen.mainScreen.scale);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 
 @end

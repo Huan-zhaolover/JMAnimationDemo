@@ -17,14 +17,14 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [_window makeKeyAndVisible];
     ViewController *VC = [[ViewController alloc] init];
     _window.rootViewController = [[UINavigationController alloc] initWithRootViewController:VC];
     VC.navigationController.navigationBar.barTintColor = [self colorFromRGB:0x99CCCC];
     
     [self initLaunchScreenAnimation];
-    
+
     return YES;
 }
 
