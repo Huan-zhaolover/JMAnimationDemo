@@ -74,8 +74,13 @@
 - (void)addLineTo:(UIView *)view {
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, view.frame.size.height - 1.5, view.frame.size.width, 0.5)];
     lineView.backgroundColor = [UIColor lightGrayColor];
-    lineView.tag = view.tag + 100;
     [view addSubview:lineView];
+    
+    UIView *lineView2 = [[UIView alloc] initWithFrame:CGRectMake(0, view.frame.size.height - 2.0, 0, 2.0)];
+    lineView2.backgroundColor = [UIColor redColor];
+    [lineView2.layer setAnchorPoint: CGPointMake(0, 0.5)];
+    lineView2.tag = view.tag + 100;
+    [view addSubview:lineView2];
 }
 
 - (void)nextButtonAction {
@@ -88,18 +93,19 @@
 
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidBeginEditing: (UITextField *)textField {
-    UIView *view = [self.view viewWithTag:textField.tag + 100];
-    [view.layer setAnchorPoint: CGPointMake(0, 0.5)];
-    
-    CABasicAnimation *basic = [CABasicAnimation animationWithKeyPath: @"transform.scale.x"];
-    basic.duration = 0.3;
-    basic.repeatCount = 1;
-    basic.removedOnCompletion = NO;
-    basic.fromValue = [NSNumber numberWithFloat: 1];
-    basic.toValue = [NSNumber numberWithFloat: 280];
-    basic.fillMode = kCAFillModeForwards;
-    basic.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseIn];
-    [view.layer addAnimation: basic forKey: nil];
+    if ([textField.text isEqualToString: @""]) {
+        UIView *view = [self.view viewWithTag:textField.tag + 100];
+        view.bounds = CGRectMake(0, 0, 1, 2);
+        CABasicAnimation *basic = [CABasicAnimation animationWithKeyPath: @"transform.scale.x"];
+        basic.duration = 0.3;
+        basic.repeatCount = 1;
+        basic.removedOnCompletion = NO;
+        basic.fromValue = [NSNumber numberWithFloat: 1];
+        basic.toValue = [NSNumber numberWithFloat:self.view.frame.size.width - 120];
+        basic.fillMode = kCAFillModeForwards;
+        basic.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseIn];
+        [view.layer addAnimation: basic forKey: nil];
+    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
@@ -111,13 +117,12 @@
         basic.duration = 0.3;
         basic.repeatCount = 1;
         basic.removedOnCompletion = NO;
-        basic.fromValue = [NSNumber numberWithFloat: 280];
-        basic.toValue = [NSNumber numberWithFloat: 1];
+        basic.fromValue = [NSNumber numberWithFloat:self.view.frame.size.width - 120];
+        basic.toValue = [NSNumber numberWithFloat:0];
         basic.fillMode = kCAFillModeForwards;
         basic.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseIn];
         [view.layer addAnimation: basic forKey: nil];
     }
-    
 }
 
 @end
