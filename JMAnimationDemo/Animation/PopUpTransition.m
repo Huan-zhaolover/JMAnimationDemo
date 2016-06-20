@@ -40,13 +40,13 @@
     CATransform3D transform = CATransform3DIdentity;
     transform.m11 = 0.8;
     transform.m22 = 0.8;
-    transform.m34 = - 1.0 / 1000.0;
+    transform.m34 = - 1.0 / 875.0;
     transform = CATransform3DRotate(transform, -M_PI_2, 0, 1, 0);
     
     CATransform3D transform2 = CATransform3DIdentity;
     transform2.m11 = 0.8;
     transform2.m22 = 0.8;
-    transform2.m34 =  -1.0 / 1000.0;
+    transform2.m34 =  -1.0 / 875.0;
     transform2 = CATransform3DRotate(transform2, M_PI_2, 0, 1, 0);
     
     if (_operation == UINavigationControllerOperationPush) {
