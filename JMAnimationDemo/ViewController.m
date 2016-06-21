@@ -38,6 +38,7 @@
     [self addCell:@"Ping Transition" class:@"PingTransitionViewController"];
     [self addCell:@"tableViewCell Animation" class:@"JMTableViewController"];
     [self addCell:@"PopUpViewController" class:@"PopUpViewController"];
+    [self addCell:@"JMViewTransition" class:@"JMFirstViewController"];
 }
 
 - (void)addCell:(NSString *)title class:(NSString *)className {

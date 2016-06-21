@@ -25,13 +25,7 @@
 - (void)loadView {
     [super loadView];
     [self.view setBackgroundColor:[UIColor whiteColor]];
-//    _button = [[UIButton alloc] initWithFrame:CGRectMake(200, 100, 40, 40)];
-//    [_button setBackgroundColor:[UIColor blackColor]];
-//    _button.layer.cornerRadius = 20;
-//    _button.layer.backgroundColor = [self colorFromRGB:0x99CCCC].CGColor;
-//    [_button addTarget:self action:@selector(transition) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:_button];
-//    
+
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(transition:)];
     [self.view addGestureRecognizer:gesture];
 }

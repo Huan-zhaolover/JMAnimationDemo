@@ -41,11 +41,8 @@
     [self.navigationController pushViewController:VC animated:YES];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-
 #pragma mark - UINavigationControllerDelegate
+
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
     if ((fromVC == self && operation == UINavigationControllerOperationPush )|| (toVC == self && operation == UINavigationControllerOperationPop)) {
         PopUpTransition *popUpTransition = [[PopUpTransition alloc] initWithAnimationControllerForOperation:operation duration:0.6];
@@ -53,6 +50,5 @@
     }
     return nil;
 }
-
 
 @end

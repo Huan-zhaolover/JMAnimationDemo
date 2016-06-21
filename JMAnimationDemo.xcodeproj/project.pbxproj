@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E3E30381D18F6010016E56A /* JMFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3E30371D18F6010016E56A /* JMFirstViewController.m */; };
+		1E3E303B1D18F61F0016E56A /* JMSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3E303A1D18F61F0016E56A /* JMSecondViewController.m */; };
+		1E3E30401D18F66F0016E56A /* JMViewTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3E303F1D18F66F0016E56A /* JMViewTransition.m */; };
+		1E3E30421D190A1D0016E56A /* KKHIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E3E30411D190A1D0016E56A /* KKHIcon.png */; };
 		1EC7C4811D0FFD4500074F46 /* JMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC7C4801D0FFD4500074F46 /* JMTableViewController.m */; };
 		888DDC6B1C9902320002176E /* RedDotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 888DDC6A1C9902320002176E /* RedDotViewController.m */; };
 		888DDC6F1C9903900002176E /* RedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888DDC6E1C9903900002176E /* RedDotView.m */; };
@@ -60,6 +64,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E3E30361D18F6010016E56A /* JMFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMFirstViewController.h; sourceTree = "<group>"; };
+		1E3E30371D18F6010016E56A /* JMFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMFirstViewController.m; sourceTree = "<group>"; };
+		1E3E30391D18F61F0016E56A /* JMSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMSecondViewController.h; sourceTree = "<group>"; };
+		1E3E303A1D18F61F0016E56A /* JMSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMSecondViewController.m; sourceTree = "<group>"; };
+		1E3E303E1D18F66F0016E56A /* JMViewTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMViewTransition.h; sourceTree = "<group>"; };
+		1E3E303F1D18F66F0016E56A /* JMViewTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMViewTransition.m; sourceTree = "<group>"; };
+		1E3E30411D190A1D0016E56A /* KKHIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KKHIcon.png; sourceTree = "<group>"; };
 		1EC7C47F1D0FFD4500074F46 /* JMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMTableViewController.h; sourceTree = "<group>"; };
 		1EC7C4801D0FFD4500074F46 /* JMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMTableViewController.m; sourceTree = "<group>"; };
 		888DDC691C9902320002176E /* RedDotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedDotViewController.h; sourceTree = "<group>"; };
@@ -146,6 +157,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E3E303D1D18F6310016E56A /* JMViewTransition */ = {
+			isa = PBXGroup;
+			children = (
+				1E3E303E1D18F66F0016E56A /* JMViewTransition.h */,
+				1E3E303F1D18F66F0016E56A /* JMViewTransition.m */,
+			);
+			name = JMViewTransition;
+			sourceTree = "<group>";
+		};
 		888DDC6C1C9902400002176E /* RedDot */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +301,12 @@
 				88A76A341D16AAE200A405E8 /* PopUpViewController.h */,
 				88A76A351D16AAE200A405E8 /* PopUpViewController.m */,
 				88A76A371D16AC5200A405E8 /* PopUp */,
+				1E3E30361D18F6010016E56A /* JMFirstViewController.h */,
+				1E3E30371D18F6010016E56A /* JMFirstViewController.m */,
+				1E3E30411D190A1D0016E56A /* KKHIcon.png */,
+				1E3E30391D18F61F0016E56A /* JMSecondViewController.h */,
+				1E3E303A1D18F61F0016E56A /* JMSecondViewController.m */,
+				1E3E303D1D18F6310016E56A /* JMViewTransition */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -419,6 +445,7 @@
 				88E411EF1C969FE4004BB629 /* LaunchScreen.storyboard in Resources */,
 				88DF3F521C9A5AEE005CE224 /* red_dot_image_5.png in Resources */,
 				88DF3F511C9A5AEE005CE224 /* red_dot_image_4.png in Resources */,
+				1E3E30421D190A1D0016E56A /* KKHIcon.png in Resources */,
 				88E411EC1C969FE4004BB629 /* Assets.xcassets in Resources */,
 				88E411EA1C969FE4004BB629 /* Main.storyboard in Resources */,
 			);
@@ -448,7 +475,9 @@
 				88C610361CA38EE5004151E9 /* SecondViewController.m in Sources */,
 				88C610391CA39620004151E9 /* PingTransition.m in Sources */,
 				88E4122C1C97E3DB004BB629 /* SlideMenuButton.m in Sources */,
+				1E3E30401D18F66F0016E56A /* JMViewTransition.m in Sources */,
 				88E411E71C969FE4004BB629 /* ViewController.m in Sources */,
+				1E3E30381D18F6010016E56A /* JMFirstViewController.m in Sources */,
 				88E412251C97E26A004BB629 /* GooeySlideMenuViewController.m in Sources */,
 				88E4121C1C96B657004BB629 /* CircleView.m in Sources */,
 				88A76A361D16AAE200A405E8 /* PopUpViewController.m in Sources */,
@@ -465,6 +494,7 @@
 				88E411E11C969FE3004BB629 /* main.m in Sources */,
 				88DF3F571C9AA040005CE224 /* RedDotCell.m in Sources */,
 				8890C7771C9BB07200CE1580 /* RedDotCellModel.m in Sources */,
+				1E3E303B1D18F61F0016E56A /* JMSecondViewController.m in Sources */,
 				88A76A3D1D16AE7000A405E8 /* PopUpTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
