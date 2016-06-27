@@ -11,6 +11,7 @@
 		1E3E303B1D18F61F0016E56A /* JMSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3E303A1D18F61F0016E56A /* JMSecondViewController.m */; };
 		1E3E30401D18F66F0016E56A /* JMViewTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3E303F1D18F66F0016E56A /* JMViewTransition.m */; };
 		1E3E30421D190A1D0016E56A /* KKHIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E3E30411D190A1D0016E56A /* KKHIcon.png */; };
+		1E3E309B1D2107AB0016E56A /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1E3E309A1D2107AB0016E56A /* image.jpg */; };
 		1EC7C4811D0FFD4500074F46 /* JMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC7C4801D0FFD4500074F46 /* JMTableViewController.m */; };
 		888DDC6B1C9902320002176E /* RedDotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 888DDC6A1C9902320002176E /* RedDotViewController.m */; };
 		888DDC6F1C9903900002176E /* RedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888DDC6E1C9903900002176E /* RedDotView.m */; };
@@ -71,6 +72,7 @@
 		1E3E303E1D18F66F0016E56A /* JMViewTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMViewTransition.h; sourceTree = "<group>"; };
 		1E3E303F1D18F66F0016E56A /* JMViewTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMViewTransition.m; sourceTree = "<group>"; };
 		1E3E30411D190A1D0016E56A /* KKHIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KKHIcon.png; sourceTree = "<group>"; };
+		1E3E309A1D2107AB0016E56A /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
 		1EC7C47F1D0FFD4500074F46 /* JMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMTableViewController.h; sourceTree = "<group>"; };
 		1EC7C4801D0FFD4500074F46 /* JMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMTableViewController.m; sourceTree = "<group>"; };
 		888DDC691C9902320002176E /* RedDotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedDotViewController.h; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				1E3E30361D18F6010016E56A /* JMFirstViewController.h */,
 				1E3E30371D18F6010016E56A /* JMFirstViewController.m */,
 				1E3E30411D190A1D0016E56A /* KKHIcon.png */,
+				1E3E309A1D2107AB0016E56A /* image.jpg */,
 				1E3E30391D18F61F0016E56A /* JMSecondViewController.h */,
 				1E3E303A1D18F61F0016E56A /* JMSecondViewController.m */,
 				1E3E303D1D18F6310016E56A /* JMViewTransition */,
@@ -448,6 +451,7 @@
 				1E3E30421D190A1D0016E56A /* KKHIcon.png in Resources */,
 				88E411EC1C969FE4004BB629 /* Assets.xcassets in Resources */,
 				88E411EA1C969FE4004BB629 /* Main.storyboard in Resources */,
+				1E3E309B1D2107AB0016E56A /* image.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

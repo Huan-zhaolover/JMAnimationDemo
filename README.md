@@ -35,5 +35,9 @@ popUpAnimation [跟着瓜神学动画（-）](http://www.jianshu.com/p/c248b1dde
 
 ![](https://github.com/raozhizhen/JMAnimationDemo/blob/master/GifFiles/popUpAnimation.gif?raw=true)
 
+JMViewTransition
+
+![](https://github.com/raozhizhen/JMAnimationDemo/blob/master/GifFiles/JMViewTransition.gif?raw=true)
+
 参考资料：
 《[A-GUIDE-TO-IOS-ANIMATION 2.0](https://selfstore.io/products/495)》这是一本非常棒的书，照着它敲敲代码都能学到很多东西。

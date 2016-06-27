@@ -46,8 +46,10 @@
         CGRect endFrame = [endView convertRect:endView.bounds toView:_secondVC.view];
         
         UIImageView *startImageView = [[UIImageView alloc] initWithFrame:startFrame];
-        startImageView.image = [self getImageFromView:_startView];
-        
+        CGFloat scale = MAX(endView.frame.size.width / _startView.frame.size.width, endView.frame.size.height / _startView.frame.size.width);
+        startImageView.image = [self getImageFromView:endView scale:scale];
+        startImageView.contentMode = UIViewContentModeScaleAspectFill;
+        startImageView.clipsToBounds = YES;
         _startView.hidden = YES;
         endView.hidden = YES;
         [contView addSubview:_secondVC.view];
@@ -73,8 +75,11 @@
         CGRect endFrame = [endView convertRect:endView.bounds toView:_secondVC.view];
         
         UIImageView *startImageView = [[UIImageView alloc] initWithFrame:endFrame];
-        startImageView.image = [self getImageFromView:endView];
         
+        CGFloat scale = MAX(_startView.frame.size.width / endView.frame.size.width, _startView.frame.size.width / endView.frame.size.height);
+        startImageView.image = [self getImageFromView:endView scale:scale];
+        startImageView.contentMode = UIViewContentModeScaleAspectFill;
+        startImageView.clipsToBounds = YES;
         _startView.hidden = YES;
         endView.hidden = YES;
         [contView addSubview:_secondVC.view];
@@ -95,8 +100,8 @@
     }
 }
 
-- (UIImage *)getImageFromView:(UIView *)view {
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, UIScreen.mainScreen.scale);
+- (UIImage *)getImageFromView:(UIView *)view scale:(CGFloat)scale {
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, MAX(UIScreen.mainScreen.scale, scale ));
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

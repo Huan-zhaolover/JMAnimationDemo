@@ -43,7 +43,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    cell.contentView.layer.contents = (__bridge id _Nullable)([UIImage imageNamed:@"KKHIcon"].CGImage);
+    cell.contentView.layer.contents = (__bridge id _Nullable)([UIImage imageNamed:@"image.jpg"].CGImage);
+    cell.contentView.contentMode = UIViewContentModeScaleAspectFill;
+    cell.contentView.layer.masksToBounds = YES;
     return cell;
 }
 
